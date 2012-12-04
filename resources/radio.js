@@ -37,8 +37,8 @@ function lift(o, distance) {
     });
 }
 function moveRows(o, total) {
-    var rows = o.prevAll().each(function(e) {
-        console.log(this);
+    var rows = o.prevAll().splice(0,total);
+    $(rows).each(function(e) {
         $(this).animate({
             top: '25px'
         }, {
