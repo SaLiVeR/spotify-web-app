@@ -25,8 +25,8 @@ function moveRow(id, distance) {
 }
 function lift(o, distance) {
     o.animate({
-        top: (parseInt(o.css('top')) - 2) + 'px',
-        left: (parseInt(o.css('left')) - 2) + 'px'
+        top: '-2px',
+        left: '2px'
     }, {
         duration: 200,
         queue: false,
@@ -40,7 +40,7 @@ function moveRows(o, total) {
     var rows = o.prevAll().each(function(e) {
         console.log(this);
         $(this).animate({
-            top: (parseInt($(this).css('top')) + 25) + 'px'
+            top: '25px'
         }, {
             duration: 300,
             queue: false
@@ -50,7 +50,7 @@ function moveRows(o, total) {
 
 function moveUp(o, distance) {
     o.animate({
-        top: (parseInt(o.css('top')) - 25*distance)
+        top: -25*distance-2
     }, {
         duration: 800,
         queue: false,
@@ -63,7 +63,7 @@ function moveUp(o, distance) {
 function drop(o) {
     o.animate({
         top: (parseInt(o.css('top')) + 2) + 'px',
-        left: (parseInt(o.css('left')) + 2) + 'px'
+        left: (parseInt(o.css('left')) - 2) + 'px'
     }, {
         duration: 200,
         queue: false,

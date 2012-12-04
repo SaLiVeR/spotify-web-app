@@ -15,22 +15,17 @@ if(!isset($_GET['action']) || empty($_GET['action'])) invalid();
 switch($_GET['action']) {
     case 'add':
         //Check everything is well in Smallville
-        if(!isset($_GET['track']) || !preg_match('/(spotify:(?:track:[a-zA-Z0-9]+))/', $_GET['track'])) {
-            header('HTTP/1.0 400 Bad Request');
-            die('Invalid Spotify URI');
-        }
+        if(!isset($_GET['track']) || !preg_match('/(spotify:(?:track:[a-zA-Z0-9]+))/', $_GET['track'])) invalid();
 
         $DB->query("SELECT * FROM voting_list WHERE trackid = '" . $_GET['track'] . "'");
-        if($DB->record_count()) {
-            die('exists');
-        }
+        if($DB->record_count()) die('exists');
         
         $DB->query("SELECT * FROM track_info WHERE trackid = '" . $_GET['track'] . "'");
         if(!$DB->record_count()) {
             
             //Get info on the track and add it to the database
             /*$ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://ws.spotify.com/lookup/1/?uri=' . $_GET['track']);
+            curl_setopt($ch, CURLOPT_URL, 'http://ws.spotify.com/lookup/1/.json?uri=' . $_GET['track']);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $data = curl_exec($ch);
             curl_close($ch);
@@ -131,7 +126,7 @@ switch($_GET['action']) {
                 $counter++;
                 $a = ($a == 'even') ? 'odd' : 'even';
 ?>
-                    <tr id="row-<?=sanitizeID($VT['trackid'])?>" style="top: <?=70+$counter*25?>px" class="<?=$a?>">
+                    <tr id="row-<?=sanitizeID($VT['trackid'])?>" class="<?=$a?>">
                         <td class="col1"><?=display_str($VT['Title'])?></td>
                         <td class="col2"><?=display_str($VT['Artist'])?></td>
                         <td class="col3"><?=get_time($VT['Duration'])?></td>
