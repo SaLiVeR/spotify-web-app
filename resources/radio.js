@@ -116,14 +116,14 @@ function filterGB(data) {
 }
 
 function showTracks(data) {
-    var html = "<table id='search-results-table'><thead><tr><th>Track Name</tj><th>Artist</tj><th>Popularity</tj><th>Time</tj><th>Album</tj></tr></thead><tbody>";
+    var html = "<table id='search-results-table'><thead><tr><th>Track Name</th><th>Artist</th><th></th><th></th><th>Album</th></tr></thead><tbody>";
     var limit = (data.tracks.length > 20) ? 20 : data.tracks.length;
     var row = 'even';
     var current = 0;
     for(t in data.tracks) {
         row = (row === 'even') ? 'odd' : 'even';
         html += "<tr id='" + sanitizeID(data.tracks[t].href) + "' class='row" + row + "'><td>" + data.tracks[t].name + "</td><td>" + data.tracks[t].artists[0].name + "</td><td>";
-        html += "<span class='popularity'><span class='popularity-value' style='width=\"" + data.tracks[t].popularity*100 + "%\"'></span></span></td><td>";
+        html += "<span class='hidden'>" + data.tracks[t].popularity + "</span><span class='popularity'><span class='popularity-value' style='width:" + data.tracks[t].popularity*100 + "%'></span></span></td><td>";
         html += formatTime(data.tracks[t].length) + "</td><td>" + data.tracks[t].album.name + "</td></tr>";
         if(current++ > limit) break;
     }

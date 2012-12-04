@@ -152,7 +152,7 @@ body {
     width: 60px;
 }
 .col4 {
-    width: 80px;
+    width: 50px;
 }
 .col5 {
     width: 150px;
@@ -187,6 +187,17 @@ body {
 }
 .voteup {
     background: url('imgs/arrow_up_16x16.png') center center no-repeat;
+}
+.popularity, .popularity-value {
+    margin: auto;
+    width: 30px;
+    height: 8px;
+    display: block;
+    background: url('popularity.png') repeat-x;
+}
+.popularity-value {
+    float: left;
+    background-position: 0px -8px;
 }
 .addsong {
     float: right;
@@ -280,6 +291,10 @@ tr.even {
 
 .selected {
     background-position: 0px 25px !important;
+}
+
+.hidden {
+    display: none;
 }
 
 #footer {

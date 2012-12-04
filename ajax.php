@@ -111,8 +111,8 @@ switch($_GET['action']) {
                     <tr>
                         <th class="col1">Track</th>
                         <th class="col2">Artist</th>
-                        <th class="col3">Time</th>
-                        <th class="col4">Popularity</th>
+                        <th class="col3"></th>
+                        <th class="col4"></th>
                         <th class="col5">Album</th>
                         <th class="col6"></th>
                     </tr>
