@@ -8,24 +8,32 @@
 require_once('config.php');
 
 //Need a login system
-$UserID = 2;
+$UserID = 3;
 
 if(!isset($_GET['action']) || empty($_GET['action'])) invalid();
 
 function show_arrow($TrackID, $Direction, $Counter) {
     global $UserVotes, $UserID;
     if(array_key_exists($TrackID, $UserVotes)) {
-        if($UserVotes[$TrackID]) {
-            $Colour = '-green';
+        if($UserVotes[$TrackID]['updown'] == '1') {
+            if($Direction == 'up') {
+                $Colour = '-green';
+            } else {
+                $Colour = '';
+            }
         } else {
-            $Colour = '-red';
+            if($Direction == 'down') {
+                $Colour = '-red';
+            } else {
+                $Colour = '';
+            }
         }
     } else {
         $Colour = '';
     }
 ?>
 <a href="#" onclick="vote(<?=($Direction == 'up') ? 1 : 0?>,'<?=sanitizeID($TrackID)?>', <?=$Counter?>)">
-    <button class="vote<?=$Direction.$Colour?> votebtn"></button>
+    <button id="button-<?=$Direction?>-<?=sanitizeID($TrackID)?>" class="vote<?=$Direction.$Colour?> votebtn"></button>
 </a>
 <?php
 }
@@ -147,7 +155,6 @@ switch($_GET['action']) {
         //Load the users' votes
         $DB->query("SELECT trackid, updown FROM votes WHERE userid = " . $UserID);
         $UserVotes = $DB->to_array('trackid', MYSQLI_ASSOC);
-        var_dump($UserVotes);
 ?>
             <table id="voting-table">
                 <thead>

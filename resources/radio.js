@@ -194,8 +194,24 @@ function addSong(songid) {
 
 // 1 = up, 0 = down
 function vote(direction, id, currentpos) {
-    if(direction !== 1 && direction !== 0) return;
-    console.log(id + ' Voting: ' + direction);
+    if(direction == 1) {
+        $('#button-up-' + id).removeClass('voteup');
+        $('#button-up-' + id).removeClass('voteup-red');
+        $('#button-up-' + id).addClass('voteup-green');
+        $('#button-down-' + id).removeClass('votedown-green');
+        $('#button-down-' + id).removeClass('votedown-red');
+        $('#button-down-' + id).addClass('votedown');
+    } else if(direction == 0) {
+        $('#button-down-' + id).removeClass('votedown');
+        $('#button-down-' + id).removeClass('votedown-green');
+        $('#button-down-' + id).addClass('votedown-red');
+        $('#button-up-' + id).removeClass('voteup');
+        $('#button-up-' + id).removeClass('voteup-green');
+        $('#button-up-' + id).addClass('voteup');
+    } else {
+        return;
+    }
+    
     $.ajax({
         type: "GET",
         url: "ajax.php",

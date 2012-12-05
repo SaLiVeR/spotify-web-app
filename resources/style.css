@@ -199,10 +199,10 @@ body {
     background: url('imgs/arrow_up_16x16.png') center center no-repeat;
 }
 .voteup-red {
-    background: url('imgs/arrow_down_red_16x16.png') center center no-repeat;
+    background: url('imgs/arrow_up_red_16x16.png') center center no-repeat;
 }
 .voteup-green {
-    background: url('imgs/arrow_down_green_16x16.png') center center no-repeat;
+    background: url('imgs/arrow_up_green_16x16.png') center center no-repeat;
 }
 .popularity, .popularity-value {
     margin: auto;
