@@ -8,9 +8,28 @@
 require_once('config.php');
 
 //Need a login system
-$UserID = 1;
+$UserID = 2;
 
 if(!isset($_GET['action']) || empty($_GET['action'])) invalid();
+
+function show_arrow($TrackID, $Direction, $Counter) {
+    global $UserVotes, $UserID;
+    if(array_key_exists($TrackID, $UserVotes)) {
+        if($UserVotes[$TrackID]) {
+            $Colour = '-green';
+        } else {
+            $Colour = '-red';
+        }
+    } else {
+        $Colour = '';
+    }
+?>
+<a href="#" onclick="vote(<?=($Direction == 'up') ? 1 : 0?>,'<?=sanitizeID($TrackID)?>', <?=$Counter?>)">
+    <button class="vote<?=$Direction.$Colour?> votebtn"></button>
+</a>
+<?php
+}
+
 
 switch($_GET['action']) {
     case 'add':
@@ -79,13 +98,32 @@ switch($_GET['action']) {
             if($vote == $_GET['direction']) die('identical');
             $DB->query("UPDATE votes SET updown = " . $_GET['direction'] . " WHERE trackid = '" . $_GET['track'] . "' AND userid = '" . $UserID . "'");
         } else {
-            $DB->query("INSERT INTO votes (trackid, userid, updown) VALUES ('" . $_GET['trackid'] . "', '" . $UserID . "', " . $_GET['direction'] . ")");
+            $DB->query("INSERT INTO votes (trackid, userid, updown) VALUES ('" . $_GET['track'] . "', '" . $UserID . "', " . $_GET['direction'] . ")");
         }
         
+        //Find out the new position in the big table.
+        $DB->query("SELECT *, @rownum:=@rownum+1 as row_position FROM (
+            SELECT
+                vl.trackid,
+                SUM(IF(v.updown, 1, -1)) AS Score,
+                ti.Title,
+                ti.Artist,
+                ti.Album,
+                ti.Duration,
+                ti.Popularity
+            FROM voting_list AS vl
+            JOIN track_info AS ti
+                ON vl.trackid = ti.trackid
+            LEFT JOIN votes AS v
+                ON vl.trackid = v.trackid
+            GROUP BY vl.trackid
+            ORDER BY score DESC
+            ) user_rank,(SELECT @rownum:=0) r");
+        $NewRows = $DB->to_array('trackid', MYSQLI_ASSOC);
+        $RowInfo = $NewRows[$_GET['track']];
         //Return the score, as it may have changed in the mean time, and we want to be as accurate as possible and just cos.
-        $DB->query("SELECT SUM(IF(updown, 1, -1)) FROM votes WHERE trackid = '" . $_GET['track'] . "'");
-        list($NewVotes) = $DB->next_record(MYSQLI_NUM);
-        echo $NewVotes;
+        echo $RowInfo['Score'] . '!!' . $RowInfo['row_position'];
+
         break;
     case 'table':
         //Load the active voting list
@@ -105,10 +143,16 @@ switch($_GET['action']) {
                     GROUP BY vl.trackid
                     ORDER BY Score DESC");
         $VotingTracks = $DB->to_array(false, MYSQL_ASSOC);
+        
+        //Load the users' votes
+        $DB->query("SELECT trackid, updown FROM votes WHERE userid = " . $UserID);
+        $UserVotes = $DB->to_array('trackid', MYSQLI_ASSOC);
+        var_dump($UserVotes);
 ?>
             <table id="voting-table">
                 <thead>
                     <tr>
+                        <th class="col0"></th>
                         <th class="col1">Track</th>
                         <th class="col2">Artist</th>
                         <th class="col3"></th>
@@ -127,19 +171,16 @@ switch($_GET['action']) {
                 $a = ($a == 'even') ? 'odd' : 'even';
 ?>
                     <tr id="row-<?=sanitizeID($VT['trackid'])?>" class="<?=$a?>">
+                        <td class="col0"><?=$counter?></td>
                         <td class="col1"><?=display_str($VT['Title'])?></td>
                         <td class="col2"><?=display_str($VT['Artist'])?></td>
                         <td class="col3"><?=get_time($VT['Duration'])?></td>
                         <td class="col4"><span class="popularity"><span class="popularity-value" style="width: <?=$VT['Popularity']*100?>%;"></span></span></td>
                         <td class="col5"><?=display_str($VT['Album'])?></td>
                         <td class="col6 votebox">
-                            <a href="#" onclick="vote(0,'<?=sanitizeID($VT['trackid'])?>')">
-                                <button class="votedown votebtn"></button>
-                            </a>
+                            <? show_arrow($VT['trackid'], 'down', $counter); ?>
                             <span id="score-<?=sanitizeID($VT['trackid'])?>" class="score"><?=$VT['Score']?></span>
-                            <a href="#" onclick="vote(1,'<?=sanitizeID($VT['trackid'])?>')">
-                                <button class="voteup votebtn"></button>
-                            </a>
+                            <? show_arrow($VT['trackid'], 'up', $counter); ?>
                         </td>
                     </tr>
 <?php

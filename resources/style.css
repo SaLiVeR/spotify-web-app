@@ -141,6 +141,10 @@ body {
     -webkit-box-shadow: 1px 1px 5px #888;
     box-shadow: 1px 1px 5px #888;
 }
+.col0 {
+    width: 20px;
+    text-align: center;
+}
 .col1 {
     width: 300px;
 }
@@ -185,8 +189,20 @@ body {
 .votedown {
     background: url('imgs/arrow_down_16x16.png') center center no-repeat;
 }
+.votedown-red {
+    background: url('imgs/arrow_down_red_16x16.png') center center no-repeat;
+}
+.votedown-green {
+    background: url('imgs/arrow_down_green_16x16.png') center center no-repeat;
+}
 .voteup {
     background: url('imgs/arrow_up_16x16.png') center center no-repeat;
+}
+.voteup-red {
+    background: url('imgs/arrow_down_red_16x16.png') center center no-repeat;
+}
+.voteup-green {
+    background: url('imgs/arrow_down_green_16x16.png') center center no-repeat;
 }
 .popularity, .popularity-value {
     margin: auto;

@@ -19,7 +19,7 @@ function updateSearch(search) {
 }
 //Controller function managing all movements. The only one that needs to be called
 function moveRow(id, distance) {
-    var o = $('#' + id);
+    var o = $('#row-' + id);
     o.css('z-index', 1);
     lift(o, distance);
 }
@@ -37,10 +37,16 @@ function lift(o, distance) {
     });
 }
 function moveRows(o, total) {
-    var rows = o.prevAll().splice(0,total);
+    if(total < 0) {
+        var rows = o.nextAll().splice(0,-total)
+        var direction = -1;
+    } else {
+        var rows = o.prevAll().splice(0,total);
+        var direction = 1;
+    }
     $(rows).each(function(e) {
         $(this).animate({
-            top: '25px'
+            top: direction*25 + 'px'
         }, {
             duration: 300,
             queue: false
@@ -187,7 +193,7 @@ function addSong(songid) {
 }
 
 // 1 = up, 0 = down
-function vote(direction, id) {
+function vote(direction, id, currentpos) {
     if(direction !== 1 && direction !== 0) return;
     console.log(id + ' Voting: ' + direction);
     $.ajax({
@@ -199,7 +205,9 @@ function vote(direction, id) {
             direction: direction
         },
         success: function(votedata) {
-            $('#score-' + id).html(votedata);
+            votedata = votedata.split('!!');
+            $('#score-' + id).html(votedata[0]);
+            if(currentpos - votedata[1] !== 0) moveRow(id, currentpos - votedata[1]);
         }
     })
 }
