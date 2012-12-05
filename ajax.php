@@ -83,7 +83,7 @@ switch($_GET['action']) {
         }
         
         //Add it to the voting list
-        $DB->query("INSERT INTO voting_list (trackid) VALUES ('" . $_GET['track'] . "')");
+        $DB->query("INSERT INTO voting_list (trackid, addedBy, addedDate) VALUES ('" . $_GET['track'] . "', '" . $UserID . "', '" . sqltime() . "')");
         
         //Add a vote
         $DB->query("INSERT INTO votes (trackid, userid, updown) VALUES ('" . $_GET['track'] . "', '"  . $UserID . "', 1)");
@@ -125,7 +125,7 @@ switch($_GET['action']) {
             LEFT JOIN votes AS v
                 ON vl.trackid = v.trackid
             GROUP BY vl.trackid
-            ORDER BY score DESC
+            ORDER BY score DESC, vl.addedDate ASC
             ) user_rank,(SELECT @rownum:=0) r");
         $NewRows = $DB->to_array('trackid', MYSQLI_ASSOC);
         $RowInfo = $NewRows[$_GET['track']];
@@ -149,7 +149,7 @@ switch($_GET['action']) {
                     LEFT JOIN votes AS v
                         ON vl.trackid = v.trackid
                     GROUP BY vl.trackid
-                    ORDER BY Score DESC");
+                    ORDER BY Score DESC, vl.addedDate ASC");
         $VotingTracks = $DB->to_array(false, MYSQL_ASSOC);
         
         //Load the users' votes

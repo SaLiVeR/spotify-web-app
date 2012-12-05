@@ -13,7 +13,7 @@ Add now playing
 
 Admin remote control (will probably have a 5s or so delay, unless I can get port comms)
 
-Test an hour or so running none-stop
+Test an hour or so running non-stop
 
 Ensure all songs are searchable/findable
 

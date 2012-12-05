@@ -1578,6 +1578,7 @@
 					_fnInitComplete( oSettings );
 				}
 			}
+            addTableEvents();
 		}
 		
 		

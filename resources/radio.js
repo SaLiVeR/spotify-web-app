@@ -113,7 +113,7 @@ function formatTime(time) {
 }
 
 //There are a whole bunch of tracks that aren't available in the UK, and Spotify is a scumbag and won't let me filter the API
-function filterGB(data) {
+function filterGB(data) {    
     for(d in data.tracks) {
         if(data.tracks[d].album.availability.territories.indexOf('GB') > 0) delete data.tracks[d];
     }
