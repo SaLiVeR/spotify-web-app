@@ -10,15 +10,10 @@ function updateSearch() {
         "type": "GET",
         "url": API,
         "data": {'action': 'search', 'search': search},
-        "datatype": "html",
+        "dataType": "json",
         "success": function(data) {
+            alert(typeof data);
             console.log(data);
-            console.log(typeof(data));
-            if(typeof data === 'object') {
-                console.log(data);
-                //showTracks(filterGB(data));
-                showTracks(data);
-            }
        }
     });
 }
