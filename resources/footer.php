@@ -11,6 +11,7 @@ function showFooter($Options=array('copyright'=>true)) {
 <?php
     }
 }
+?>
     </div>
 </body>
 </html>
