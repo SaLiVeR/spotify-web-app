@@ -5,7 +5,7 @@ function updateSearch() {
         return;
     }
     //var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
-    var API = "localhost/mpd-api.php";
+    var API = "http://192.168.1.109/mpd-api.php";
     $.ajax({
         "type": "GET",
         "url": API,
