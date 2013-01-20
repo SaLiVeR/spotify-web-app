@@ -8,7 +8,7 @@
 require_once('config.php');
 
 //Need a login system
-$UserID = 3;
+$UserID = 5;
 
 if(!isset($_GET['action']) || empty($_GET['action'])) invalid();
 
@@ -90,7 +90,7 @@ switch($_GET['action']) {
         
         break;
     case 'vote':
-        if(!isset($_GET['track']) || !preg_match('/(spotify:(?:track:[a-zA-Z0-9]+))/', $_GET['track'])
+        if(!isset($_GET['track']) || !validID($_GET['track'])
             || !isset($_GET['direction']) || !in_array($_GET['direction'], array(0,1))) {
             invalid();
         }

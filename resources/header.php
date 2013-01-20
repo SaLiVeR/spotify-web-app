@@ -28,11 +28,17 @@ header('Pragma: no-cache');
 <body>
     <div id="header">       
         <h2>Spotify Search And Add And Vote And Shit</h2>
+<?php
+if(isset($Options['search']) && $Options['search']) {
+?>        
         <form id="searchbox" method="get" onsubmit="return false;">
-            <span class="label">Search: </span><input type="text" id="searchinput" onclick="updateSearch(this.value)" onkeyup="updateSearch(this.value);" />
+            <span class="label">Search: </span><input type="text" id="searchinput" onclick="updateSearch();" onkeyup="updateSearch();" />
         </form>
         <div id="search">
             <div id="search-results"></div>
         </div>
+<?php
+}
+?>
     </div>  
     <div id="content">

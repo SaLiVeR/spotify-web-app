@@ -1,18 +1,21 @@
-function updateSearch(search) {
-    if(search.length === 0) {
+function updateSearch() {
+    var search = $('#searchinput').val();
+    if(typeof search == 'undefined' || search.length === 0) {
         hideSearch();
         return;
     }
-    var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
+    //var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
+    var API = "localhost/mpd-api.php";
     $.ajax({
         "type": "GET",
-        "url": spotifyAPI,
+        "url": API,
         "data": {q: search},
         "datatype": "html",
         "success": function(data) {
             if(typeof data === 'object') {
                 console.log(data);
-                showTracks(filterGB(data));
+                //showTracks(filterGB(data));
+                showTracks(data);
             }
        }
     });
@@ -113,7 +116,7 @@ function formatTime(time) {
 }
 
 //There are a whole bunch of tracks that aren't available in the UK, and Spotify is a scumbag and won't let me filter the API
-function filterGB(data) {    
+function filterGB(data) {
     for(d in data.tracks) {
         if(data.tracks[d].album.availability.territories.indexOf('GB') > 0) delete data.tracks[d];
     }
@@ -122,15 +125,15 @@ function filterGB(data) {
 }
 
 function showTracks(data) {
-    var html = "<table id='search-results-table'><thead><tr><th>Track Name</th><th>Artist</th><th></th><th></th><th>Album</th></tr></thead><tbody>";
-    var limit = (data.tracks.length > 20) ? 20 : data.tracks.length;
+    var html = "<table id='search-results-table'><thead><tr><th>Track Name</th><th>Artist</th><th></th><th>Album</th></tr></thead><tbody>";
+    var limit = (data.length > 20) ? 20 : data.length;
     var row = 'even';
     var current = 0;
-    for(t in data.tracks) {
+    for(t in data) {
         row = (row === 'even') ? 'odd' : 'even';
-        html += "<tr id='" + sanitizeID(data.tracks[t].href) + "' class='row" + row + "'><td>" + data.tracks[t].name + "</td><td>" + data.tracks[t].artists[0].name + "</td><td>";
-        html += "<span class='hidden'>" + data.tracks[t].popularity + "</span><span class='popularity'><span class='popularity-value' style='width:" + data.tracks[t].popularity*100 + "%'></span></span></td><td>";
-        html += formatTime(data.tracks[t].length) + "</td><td>" + data.tracks[t].album.name + "</td></tr>";
+        html += "<tr id='" + sanitizeID(data[t].file) + "' class='row" + row + "'><td>" + data[t].Title + "</td><td>" + data[t].Artist + "</td><td>";
+        //html += "<span class='hidden'>" + data[t].popularity + "</span><span class='popularity'><span class='popularity-value' style='width:" + data.tracks[t].popularity*100 + "%'></span></span></td><td>";
+        html += formatTime(data[t].Time) + "</td><td>" + data[t].Album + "</td></tr>";
         if(current++ > limit) break;
     }
     html += "</tbody></table>";
@@ -139,7 +142,7 @@ function showTracks(data) {
     $('#search-results').html(html);
     showSearch();
     $('#search-results-table').dataTable({
-        "bFilter": false
+        "bFilter": true
     });
     addTableEvents();
 }

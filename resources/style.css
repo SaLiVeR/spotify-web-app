@@ -73,7 +73,7 @@ body {
     right: 5%;
     top: 40px;
     border: 10px solid #222;
-    max-width: 700px;
+    width: 700px;
     max-height: 347px;
     z-index: 2;
     -moz-border-radius: 10px;
@@ -93,6 +93,9 @@ body {
 #searchinput{
     padding: 0 5px 0 5px;
 }
+#searchfield {
+    color: #03214D;
+}
 #search-results {
     display: inline;
     clear: both;
@@ -101,7 +104,6 @@ body {
     width: 100%;
     overflow-y: scroll;
     z-index: 1;
-    min-width: 200px;
 }
 #search-results label{
     color: #ffffff;
@@ -273,7 +275,15 @@ a {
 .dataTables_paginate a {
     padding: 5px;
 }
-
+.dataTables_filter {
+    position: absolute;
+    overflow: visible;
+    top: 18px;
+    right: 20px;
+}
+.dataTables_filter input {
+    padding: 2px 5px;
+}
 th {
     background: url('list-header.png');
     font: bold 11px 'Helvetica Neue',Arial,sans-serif;
