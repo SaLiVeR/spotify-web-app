@@ -5,13 +5,15 @@ function updateSearch() {
         return;
     }
     //var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
-    var API = "http://192.168.1.109/mpd-api.php";
+    var API = "http://192.168.1.109/spotify-web-app/mpd-api.php";
     $.ajax({
         "type": "GET",
         "url": API,
         "data": {'action': 'search', 'search': search},
         "datatype": "html",
         "success": function(data) {
+            console.log(data);
+            console.log(typeof(data));
             if(typeof data === 'object') {
                 console.log(data);
                 //showTracks(filterGB(data));
