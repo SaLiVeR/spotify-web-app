@@ -7,9 +7,13 @@
 
 //Config
 require('config.php');
-
 //Header
 require(RESOURCE_DIR . 'header.php');
+//Footer
+require(RESOURCE_DIR . 'footer.php');
+
+showHeader();
+
 //*********************************************
 ?>
 <div id="table-container" class="box">
@@ -21,7 +25,7 @@ include(dirname(__file__) . '/ajax.php');
 </div>
 <?php
 //*********************************************
-//Footer
-require(RESOURCE_DIR . 'footer.php');
+
+showFooter();
 
 ?>
