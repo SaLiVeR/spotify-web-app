@@ -19,7 +19,7 @@ switch($_GET['action']) {
         
         $Results = $MPD->Find('any', $_GET['search']);
         
-        json_encode($Results);
+        echo json_encode($Results);
         
         break;
 }
