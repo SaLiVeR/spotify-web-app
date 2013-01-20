@@ -33,6 +33,7 @@ define("MPD_CMD_NEXT", "next");
 define("MPD_CMD_PREV", "previous");
 define("MPD_CMD_PLLIST", "playlistinfo");
 define("MPD_CMD_PLADD", "add");
+define("MPD_CMD_PLMOVE", "move");
 define("MPD_CMD_PLREMOVE", "delete");
 define("MPD_CMD_PLCLEAR", "clear");
 define("MPD_CMD_PLSHUFFLE", "shuffle");
@@ -107,7 +108,7 @@ class MPD {
     // Misc Other Vars
     var $mpd_class_version = "1.2";
 
-    var $debugging = true; // Set to TRUE to turn extended debugging on.
+    var $debugging = false; // Set to TRUE to turn extended debugging on.
     var $errStr = ""; // Used for maintaining information about the last error message
 
     var $command_queue; // The list of commands for bulk command sending
@@ -948,13 +949,13 @@ class MPD {
 
         $this->db_last_refreshed = $stats['db_update'];
 
-        $this->volume = $status['volume'];
-        $this->uptime = $stats['uptime'];
-        $this->playtime = $stats['playtime'];
-        $this->num_songs_played = $stats['songs_played'];
-        $this->num_artists = $stats['num_artists'];
-        $this->num_songs = $stats['num_songs'];
-        $this->num_albums = $stats['num_albums'];
+        $this->volume = (isset($status['volume'])) ? $status['volume'] : 0;
+        $this->uptime = (isset($stats['uptime'])) ? $stats['uptime'] : 0;
+        $this->playtime = (isset($stats['playtime'])) ? $stats['playtime'] : 0;
+        $this->num_songs_played = (isset($stats['songs_played'])) ? $stats['songs_played'] : 0;
+        $this->num_artists = (isset($stats['num_artists'])) ? $stats['num_artists'] : 0;
+        $this->num_songs = (isset($stats['num_songs'])) ? $stats['num_songs']: 0;
+        $this->num_albums = (isset($stats['num_albums'])) ? $stats['num_albums'] : 0;
         return true;
     }
 
