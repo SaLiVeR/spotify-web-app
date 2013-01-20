@@ -9,7 +9,7 @@ function updateSearch() {
     $.ajax({
         "type": "GET",
         "url": API,
-        "data": {q: search},
+        "data": {'action': 'search', 'search': search},
         "datatype": "html",
         "success": function(data) {
             if(typeof data === 'object') {
