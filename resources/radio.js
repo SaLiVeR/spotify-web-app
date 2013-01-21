@@ -12,8 +12,11 @@ function updateSearch() {
         "data": {'action': 'search', 'search': search},
         "dataType": "json",
         "success": function(data) {
-            alert(typeof data);
-            console.log(data);
+            if(typeof data === 'object') {
+                console.log(data);
+                //showTracks(filterGB(data));
+                showTracks(filterSongs(data));
+            }
        }
     });
 }
@@ -118,6 +121,13 @@ function filterGB(data) {
         if(data.tracks[d].album.availability.territories.indexOf('GB') > 0) delete data.tracks[d];
     }
     console.log(data);
+    return data;
+}
+
+function filterTracks(data) {
+    for(d in data) {
+        if(!data[d].Time) delete data[d];
+    }
     return data;
 }
 

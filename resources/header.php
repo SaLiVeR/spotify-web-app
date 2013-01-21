@@ -41,8 +41,8 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
 <?php
     if($Options['search']) {
 ?>        
-        <form id="searchbox" method="get" onsubmit="return false;">
-            <span class="label">Search: </span><input type="text" id="searchinput" onclick="updateSearch();" onkeyup="updateSearch();" />
+        <form id="searchbox" method="get" onsubmit="updateSearch(); return false;">
+            <span class="label">Search: </span><input type="text" id="searchinput" onfocus="updateSearch();" />
         </form>
         <div id="search">
             <div id="search-results"></div>
