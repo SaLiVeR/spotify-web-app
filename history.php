@@ -13,15 +13,21 @@ require(RESOURCE_DIR . 'header.php');
 require(RESOURCE_DIR . 'footer.php');
 
 
-//$DB->query("")
+require(RESOURCE_DIR . 'class_history.php');
 
 showHeader(array('search'=>false), 'history.js');
 /**********************************/
+?>
+<h3>
+    <a href="changeTable('recent')">Recent Songs</a>
+    <a href="changeTable('popular')">Most Popular Songs</a>
+    <a href="changeTable('popartist')">Most Popular Arists</a>
+    <a href="changeTable('popuser')">Users with most votes</a>
+</h3>
 
 
 
-
-
+<?php
 /**********************************/
 showFooter();
 ?>

@@ -19,7 +19,9 @@ switch($_GET['action']) {
     case 'getsong':
         $DB->query("SELECT 
                         vl.trackid,
-                        SUM(IF(v.updown, 1, -1)) as Score
+                        SUM(IF(v.updown, 1, -1)) as Score,
+                        vl.addedBy,
+                        vl.addedDate
                     FROM voting_list AS vl
                     LEFT JOIN votes AS v
                         ON vl.trackid = v.trackid
@@ -29,8 +31,11 @@ switch($_GET['action']) {
                     LIMIT 1");
         if(!$DB->record_count()) die('empty');
         
-        list($ID) = $DB->next_record(MYSQLI_NUM);
+        list($ID, $Score, $addedBy, $DateAdded) = $DB->next_record(MYSQLI_NUM);
         echo $ID;
+        
+        //$DB->query("INSERT INTO history (trackid, votes, addedBy, datePlayed, dateAdded) 
+        //                VALUES ('" . $ID . "', '" . $Score . "', '" . $addedBy . "', '" . sqltime() . "', '" . $DateAdded . "')");
     
         //$DB->query("DELETE FROM votes WHERE trackid = '" . $ID . "'");
         //$DB->query("DELETE FROM track_info WHERE trackid = '" . $ID . "'");
