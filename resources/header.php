@@ -26,6 +26,7 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
     <script type="text/javascript" src="<?=RESOURCE_DIR?>boxshadow-hooks.js"></script>
 <?php
     if(!empty($JSIncludes)) {
+        $JSIncludes = explode(',', $JSIncludes);
         foreach($JSIncludes as $JS) {
 ?>
     <script type="text/javascript" src="<?=RESOURCE_DIR . $JS?>"></script>
