@@ -58,7 +58,7 @@ CLASS HISTORY {
         return $Query;
     }
 
-    function showTable($Table) {
+    function createTable($Table) {
         global $DB;
         
         if(!in_array($Table, array_keys($this->Tables))) $this->error('Table does not exist');
@@ -70,7 +70,7 @@ CLASS HISTORY {
         $this->build_table_header();
         $this->add_data($Data);
         $this->end_table();
-        echo $this->Output;
+        return $this->Output;
     }
     
     private function build_table_header() {
