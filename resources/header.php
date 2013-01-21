@@ -20,7 +20,7 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
     <link href="<?=RESOURCE_DIR?>style.css" rel="stylesheet" type="text/css" />
     
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.min.js"></script>
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>radio.js"></script>
+    <script type="text/javascript" src="<?=RESOURCE_DIR?>global.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.dataTables.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>boxshadow-hooks.js"></script>
@@ -35,9 +35,9 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
 ?>
     
 </head>
-<body>
+<body id="<?=$_SERVER['PHP_SELF']?>">
     <div id="header">       
-        <h2>Title</h2>
+        <h2><a href="index.php" onclick="changeNav('index.php')">Title</a></h2>
         <div id="navigation">
             <ul>
                 <li><a href="index.php" onclick="changeNav('index.php')">Voting</a></li>

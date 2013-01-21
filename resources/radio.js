@@ -21,16 +21,6 @@ function updateSearch() {
     });
 }
 
-function changeNav(page) {
-    var page = window.location.href;
-    if(getPage(page) == page) return false;
-    if(page.indexOf('.php') == -1 && page = 'index.php') return false
-}
-
-function getPage(page) {
-    return page.match('/\/([^\/\?]+)(\?.?+)?$/');
-}
-
 //Controller function managing all movements. The only one that needs to be called
 function moveRow(id, distance) {
     var o = $('#row-' + id);
@@ -92,38 +82,6 @@ function drop(o) {
             reloadTable();
         }
     });
-}
-
-//jQuery uses colons for other functions. We need to remove them from our IDs
-function sanitizeID(ID) {
-    return ID.replace('/\:/g','---');
-}
-function unsanitizeID(ID) {
-    return ID.replace(new RegExp('---', 'g'), ':');
-}
-
-function formatTime(time) {
-    var hours = 0
-    var minutes = 0
-    var seconds = 0;
-    while(time > 60*60) {
-        hours++;
-        time -= 60*60;
-    }
-    while(time > 60) {
-        minutes++;
-        time -= 60;
-    }
-    time = Math.round(time);
-    
-    if(time < 10) time = '0' + time;
-    
-    if(hours > 0) {
-        if(minutes < 10) minutes = '0' + minutes;
-        return hours + ':' + minutes + ':' + time;
-    } else {
-        return minutes + ':' + time;
-    }
 }
 
 //There are a whole bunch of tracks that aren't available in the UK, and Spotify is a scumbag and won't let me filter the API

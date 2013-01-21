@@ -15,7 +15,7 @@ require(RESOURCE_DIR . 'footer.php');
 
 //$DB->query("")
 
-showHeader(array('search'=>false));
+showHeader(array('search'=>false), 'history.js');
 /**********************************/
 
 
