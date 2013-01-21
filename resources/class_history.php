@@ -51,10 +51,11 @@ CLASS HISTORY {
         foreach($this->Tables[$this->TableType]['columns'] as $Column => $ColQuery) {
             $Cols[] = $ColQuery . ' AS ' . $Column;
         }
-        $Query = "SELECT " . implode(', ', $Cols) . " FROM " . implode(', ', $this->Tables[$this->TableType]['tables']);
-        if(array_key_exists('order', $this->Tables[$this->TableType])) $Query += $this->Tables[$this->TableType]['order'];
-        if(array_key_exists('group', $this->Tables[$this->TableType])) $Query += $this->Tables[$this->TableType]['group'];
-        
+        $Query = "SELECT " . implode(', ', $Cols) . " FROM " . implode(' ', $this->Tables[$this->TableType]['tables']);
+        if(array_key_exists('group', $this->Tables[$this->TableType])) $Query .= " " . $this->Tables[$this->TableType]['group'];
+        if(array_key_exists('order', $this->Tables[$this->TableType])) $Query .= " " . $this->Tables[$this->TableType]['order'];
+
+        echo $Query;
         return $Query;
     }
 
