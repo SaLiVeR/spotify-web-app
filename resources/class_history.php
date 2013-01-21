@@ -19,6 +19,7 @@ CLASS HISTORY {
             'tables' => array(
                 'history AS h',
                 'JOIN track_info AS ti ON h.trackid = ti.trackid',
+                'LEFT JOIN votes AS v ON h.trackid = v.trackid',
                 'LEFT JOIN users AS u ON h.addedBy = u.ID'
             ),
             'order' => 'ORDER BY h.datePlayed DESC',
