@@ -37,7 +37,13 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
 </head>
 <body>
     <div id="header">       
-        <h2>Spotify Search And Add And Vote And Shit</h2>
+        <h2>Title</h2>
+        <div class="navigation">
+            <ul>
+                <li><a href="index.php" onclick="changeNav('index.php')">Voting</a></li>
+                <li><a href="history.php" onclick="changeNav('history.php')">History</a></li>
+            </ul>
+        </div>
 <?php
     if($Options['search']) {
 ?>        

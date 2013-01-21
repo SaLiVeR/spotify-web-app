@@ -20,6 +20,17 @@ function updateSearch() {
        }
     });
 }
+
+function changeNav(page) {
+    var page = window.location.href;
+    if(getPage(page) == page) return false;
+    if(page.indexOf('.php') == -1 && page = 'index.php') return false
+}
+
+function getPage(page) {
+    return page.match('/\/([^\/\?]+)(\?.?+)?$/');
+}
+
 //Controller function managing all movements. The only one that needs to be called
 function moveRow(id, distance) {
     var o = $('#row-' + id);
@@ -126,7 +137,7 @@ function filterGB(data) {
 
 function filterSongs(data) {
     for(d in data) {
-        if(!data[d].Time) delete data[d];
+        if(data[d].Time == "0") delete data[d];
     }
     return data;
 }
