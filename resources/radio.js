@@ -124,7 +124,7 @@ function filterGB(data) {
     return data;
 }
 
-function filterTracks(data) {
+function filterSongs(data) {
     for(d in data) {
         if(!data[d].Time) delete data[d];
     }
