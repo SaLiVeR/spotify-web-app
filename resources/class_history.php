@@ -64,7 +64,7 @@ CLASS HISTORY {
         if(!in_array($Table, array_keys($this->Tables))) $this->error('Table does not exist');
         $this->TableType = $Table;
         
-        $DB->query($this->get_query());
+        $DB->query($this->build_query());
         $Data = $DB->to_array(false, MYSQLI_ASSOC);        
         
         $this->build_table_header();
