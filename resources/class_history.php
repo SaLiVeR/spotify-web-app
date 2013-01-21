@@ -10,7 +10,7 @@ CLASS HISTORY {
                 'Duration' => 'ti.duration',
                 'Album' => 'ti.Album',
                 'Votes' => 'SUM(IF(v.updown, 1, -1))',
-                'PlayCount' => 'something',
+                'PlayCount' => 'COUNT(h2.trackid)',
                 'ChooserID' => 'h.addedBy',
                 'Chooser' => 'u.Username',
                 'Played' => 'h.datePlayed',
@@ -20,7 +20,8 @@ CLASS HISTORY {
                 'history AS h',
                 'JOIN track_info AS ti ON h.trackid = ti.trackid',
                 'LEFT JOIN votes AS v ON h.trackid = v.trackid',
-                'LEFT JOIN users AS u ON h.addedBy = u.ID'
+                'LEFT JOIN users AS u ON h.addedBy = u.ID',
+                'LEFT JOIN history AS h2 ON h.trackid = h2.trackid'
             ),
             'order' => 'ORDER BY h.datePlayed DESC',
             'group' => 'GROUP BY h.trackid'
