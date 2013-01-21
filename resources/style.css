@@ -42,7 +42,7 @@ body {
     background-color: #d2d2d2;
 }
 
-#header{
+#header {
     color:#ffffff;
     position:relative;
     width: 100%;
@@ -50,11 +50,23 @@ body {
     height: 50px;
     background-color:#f25d23;
 }
-#header h2{
+#header h2 {
     line-height:50px;
     clear: both;
     text-align: left;
     margin-left:10%;
+}
+
+#header #navigation {
+    display: inline
+}
+
+#header #navigation ul {
+    text-decoration: none;
+}
+
+#header #navigation ul li {
+    color: #FFF;
 }
 
 #content {
