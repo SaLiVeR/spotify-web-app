@@ -53,7 +53,7 @@ function createTable(tableData, direction) {
 }
 
 function moveTable(table, currentOffsets, destinationPosition) {
-    table.animate({
+    $(table).animate({
         left: currentOffsets.left + 'px'
     }, 5000, function() {
         // Animation complete.
