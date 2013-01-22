@@ -110,20 +110,20 @@ CLASS HISTORY {
             foreach($D as $Col=>$Val) {
                 switch($Col) {
                     case 'Duration':
-                        echo "<td>" . get_time($Val) . "</td>";
+                         $this->Output .= "<td>" . get_time($Val) . "</td>";
                         break;
                     case 'ChooserID':
-                        echo "<td>" . formatUsername($Val, $Data['Chooser']) . "</td>";
+                         $this->Output .= "<td>" . formatUsername($Val, $D['Chooser']) . "</td>";
                         break;
                     case 'Added':
-                        echo "<td>" . timeDiff(strtotime($Data['Played']) - strtotime($Val)) . "</td>";
+                         $this->Output .= "<td>" . timeDiff(strtotime($Val) - strtotime($D['Played']), 2, true, true, true) . "</td>";
                         break;
                     case 'Votes':
                     case 'PlayCount':
-                        echo "<td>" . number_format($Val) . "</td>";
+                         $this->Output .= "<td>" . number_format($Val) . "</td>";
                         break;
                     default:
-                        echo "<td>" . display_str($Val) . "</td>";
+                         $this->Output .= "<td>" . display_str($Val) . "</td>";
                 }
             }
         }
