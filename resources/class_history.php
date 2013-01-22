@@ -58,7 +58,6 @@ CLASS HISTORY {
         if(array_key_exists('group', $this->Tables[$this->TableType])) $Query .= " " . $this->Tables[$this->TableType]['group'];
         if(array_key_exists('order', $this->Tables[$this->TableType])) $Query .= " " . $this->Tables[$this->TableType]['order'];
 
-        echo $Query;
         return $Query;
     }
 
@@ -69,7 +68,7 @@ CLASS HISTORY {
         $this->TableType = $Table;
         
         $DB->query($this->build_query());
-        $Total = $DB->rowCount();
+        $Total = $DB->record_count();
         $Data = $DB->to_array(false, MYSQLI_ASSOC);        
         
         $this->build_table_header();
