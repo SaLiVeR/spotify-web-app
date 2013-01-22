@@ -20,11 +20,11 @@ showHeader(array('search'=>false), 'history.js');
 /**********************************/
 ?>
 <div id="history-container">
-<h3>
+<h3 id="history-navigation">
     <a href="#" onclick="changeTable('recent')">Recent Songs</a>
     <a href="#" onclick="changeTable('popular')">Most Popular Songs</a>
     <a href="#" onclick="changeTable('popartist')">Most Popular Arists</a>
-    <a href="#" onclick="changeTable('popuser')">Users with most votes</a>
+    <a href="#" onclick="changeTable('popuser')">Users With Most Votes</a>
 </h3>
 
 <?=$H->createTable('recent')?>

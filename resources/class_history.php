@@ -110,7 +110,7 @@ CLASS HISTORY {
             foreach($D as $Col=>$Val) {
                 switch($Col) {
                     case 'Duration':
-                        echo "<td>" . formatTime($Val) . "</td>";
+                        echo "<td>" . get_time($Val) . "</td>";
                         break;
                     case 'ChooserID':
                         echo "<td>" . formatUsername($Val, $Data['Chooser']) . "</td>";
@@ -118,8 +118,12 @@ CLASS HISTORY {
                     case 'Added':
                         echo "<td>" . timeDiff(strtotime($Data['Played']) - strtotime($Val)) . "</td>";
                         break;
+                    case 'Votes':
+                    case 'PlayCount':
+                        echo "<td>" . number_format($Val) . "</td>";
+                        break;
                     default:
-                        echo "<td>" . (is_number($Val)) ? number_format($Val) : display_str($Val) . "</td>";
+                        echo "<td>" . display_str($Val) . "</td>";
                 }
             }
         }

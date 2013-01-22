@@ -341,9 +341,18 @@ tr.even {
     text-align: center;
 }
 
-#history-container {
-    width: 800px;
+#history-container table {
+    width: 1200px;
     margin: auto;
+}
+
+#history-container #history-navigation {
+    text-align: center;
+}
+
+#history-container #history-navigation ul li {
+    color: #000;
+    padding: 0 10px;
 }
 
 #footer {
