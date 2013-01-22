@@ -89,7 +89,7 @@ CLASS HISTORY {
             <table id="history-table-' . $this->TableType . '">
                 <thead>
                     <tr>';
-        foreach($this->Tables[$this->TableType] as $Col => $CQ) {
+        foreach($this->Tables[$this->TableType]['columns'] as $Col => $CQ) {
             if($this->Columns[$Col]['column']) {
                 $this->Cols++;
                 $this->Output += '<th class="' . strtolower($Col) . '">' . $this->Columns[$CQ]['label'] . '</th>';
