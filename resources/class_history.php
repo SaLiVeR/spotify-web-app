@@ -9,7 +9,7 @@ CLASS HISTORY {
                 'Artist' => 'ti.artist',
                 'Duration' => 'ti.duration',
                 'Album' => 'ti.Album',
-                'Votes' => 'SUM(IF(v.updown, 1, -1))',
+                'Votes' => 'h.votes',
                 'PlayCount' => 'COUNT(h2.trackid)',
                 'ChooserID' => 'h.addedBy',
                 'Chooser' => 'u.Username',
@@ -23,13 +23,49 @@ CLASS HISTORY {
                 'LEFT JOIN users AS u ON h.addedBy = u.ID',
                 'LEFT JOIN history AS h2 ON h.trackid = h2.trackid'
             ),
-            'order' => 'ORDER BY h.datePlayed DESC',
-            'group' => 'GROUP BY h.trackid'
+            'group' => 'GROUP BY h.trackid',
+            'order' => 'ORDER BY h.datePlayed DESC'
             
         ),
-        'popular' => array(),
-        'popartist' => array(),
-        'popuser' => array()
+        'popular' => array(
+            'columns' => array(
+                'Track' => 'ti.title',
+                'Artist' => 'ti.artist',
+                'Duration' => 'ti.duration',
+                'Album' => 'ti.Album',
+                'Votes' => 'SUM(h.votes)',
+                'PlayCount' => 'COUNT(h2.trackid)',
+                'LastPlayed' => 'MAX(h2.datePlayed)'
+            ),
+            'tables' => array(
+                'history AS h',
+                'JOIN track_info AS ti ON h.trackid = ti.trackid',
+                'LEFT JOIN votes AS v ON h.trackid = v.trackid',
+                'LEFT JOIN history AS h2 ON h.trackid = h2.trackid'
+            ),
+            'group' => 'GROUP BY h.trackid',
+            'order' => 'ORDER BY PlayCount DESC'
+        ),
+        'popartist' => array(
+            'columns' => array(
+            
+            ),
+            'tables' => array(
+            
+            ),
+            'group' => '',
+            'order' => ''
+        ),
+        'popuser' => array(
+            'columns' => array(
+            
+            ),
+            'tables' => array(
+            
+            ),
+            'group' => '',
+            'order' => ''
+        )
     );
     //Configuration of the columns. Whether not they need a new column, and their label
     private $Columns = array(
