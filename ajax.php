@@ -204,6 +204,15 @@ switch($_GET['action']) {
             </table>
 <?php
         break;
+    case 'gethistorytable':
+        if(!isset($_GET['table']) || empty($_GET['table'])) invalid();
+        
+        require(RESOURCE_DIR . 'class_history.php');
+        $H = new HISTORY;
+        
+        echo $H->createTable($_GET['table']);
+        
+        break;
     default:
         invalid();
 }
