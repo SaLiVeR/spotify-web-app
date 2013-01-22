@@ -108,6 +108,7 @@ CLASS HISTORY {
             $a = ($a == 'even') ? 'odd' : 'even';
             $this->Output .= "<tr class='" . $a . "'>";
             foreach($D as $Col=>$Val) {
+                if(!$this->Columns[$Col]['column']) continue;
                 switch($Col) {
                     case 'Duration':
                          $this->Output .= "<td>" . get_time($Val) . "</td>";
