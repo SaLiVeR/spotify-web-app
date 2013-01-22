@@ -111,20 +111,23 @@ CLASS HISTORY {
                 if(!$this->Columns[$Col]['column']) continue;
                 switch($Col) {
                     case 'Duration':
-                         $this->Output .= "<td>" . get_time($Val) . "</td>";
+                        $this->Output .= "<td>" . get_time($Val) . "</td>";
                         break;
                     case 'ChooserID':
-                         $this->Output .= "<td>" . formatUsername($Val, $D['Chooser']) . "</td>";
+                        $this->Output .= "<td>" . formatUsername($Val, $D['Chooser']) . "</td>";
+                        break;
+                    case 'Played':
+                        $this->Output .= "<td>" . timeDiff($Val) . "</td>";
                         break;
                     case 'Added':
-                         $this->Output .= "<td>" . timeDiff(strtotime($Val) - strtotime($D['Played']), 2, true, true, true) . "</td>";
+                        $this->Output .= "<td>" . timeDiff(strtotime($Val) - strtotime($D['Played']), 2, true, false, true) . "</td>";
                         break;
                     case 'Votes':
                     case 'PlayCount':
-                         $this->Output .= "<td>" . number_format($Val) . "</td>";
+                        $this->Output .= "<td>" . number_format($Val) . "</td>";
                         break;
                     default:
-                         $this->Output .= "<td>" . display_str($Val) . "</td>";
+                        $this->Output .= "<td>" . display_str($Val) . "</td>";
                 }
             }
         }
