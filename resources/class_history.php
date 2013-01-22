@@ -46,6 +46,7 @@ CLASS HISTORY {
     );
     
     private $TableType;
+    private $Cols = 0;
     private $Output;
     
     private function build_query() {
@@ -68,12 +69,20 @@ CLASS HISTORY {
         $this->TableType = $Table;
         
         $DB->query($this->build_query());
+        $Total = $DB->rowCount();
         $Data = $DB->to_array(false, MYSQLI_ASSOC);        
         
         $this->build_table_header();
-        $this->add_data($Data);
+        
+        if($Total > 0) $this->add_data($Data);
+        else $this->add_placeholder_row();
+        
         $this->end_table();
         return $this->Output;
+    }
+    
+    private function add_placeholder_row() {
+        $this->Output .= "<tr><td colspan='" . $this->Cols . "'>There are currently no songs to show.</td></tr>";
     }
     
     private function build_table_header() {
@@ -83,6 +92,7 @@ CLASS HISTORY {
                     <tr>';
         foreach($this->Tables[$this->TableType] as $Col => $CQ) {
             if($this->Columns[$Col]['column']) {
+                $this->Cols++;
                 $this->Output += '<th class="' . strtolower($Col) . '">' . $this->Columns[$CQ]['label'] . '</th>';
             }
         }
@@ -97,7 +107,7 @@ CLASS HISTORY {
         $a = 'even';
         foreach($Data as $D) {
             $a = ($a == 'even') ? 'odd' : 'even';
-            $this->Output += "<tr class='" . $a . "'>";
+            $this->Output .= "<tr class='" . $a . "'>";
             foreach($D as $Col=>$Val) {
                 switch($Col) {
                     default:
