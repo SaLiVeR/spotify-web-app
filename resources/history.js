@@ -1,6 +1,6 @@
 function changeTable(table) {
     var currentTable = $('#current-table').html();
-    if table == currentTable return;
+    if(table == currentTable) return;
     
     var direction;
     var otherDirection;
