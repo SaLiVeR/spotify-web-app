@@ -92,7 +92,7 @@ CLASS HISTORY {
         foreach($this->Tables[$this->TableType]['columns'] as $Col => $CQ) {
             if($this->Columns[$Col]['column']) {
                 $this->Cols++;
-                $this->Output += '<th class="' . strtolower($Col) . '">' . $this->Columns[$CQ]['label'] . '</th>';
+                $this->Output += '<th class="' . strtolower($Col) . '">' . $this->Columns[$Col]['label'] . '</th>';
             }
         }
         $this->Output += '
