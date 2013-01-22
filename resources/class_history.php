@@ -86,6 +86,7 @@ CLASS HISTORY {
     
     private function build_table_header() {
         $this->Output = '
+            <span class="hidden" id="current-table">' . $this->TableType .'</span>
             <table id="history-table-' . $this->TableType . '">
                 <thead>
                     <tr>';
