@@ -78,7 +78,8 @@ CLASS HISTORY {
         'ChooserID' => array('label' => 'Username', 'column' => true),
         'Chooser' => array('label' => '', 'column' => false),
         'Played' => array('label' => 'played', 'column' => true),
-        'Added' =>  array('label' => 'Time before Played', 'column' => true)
+        'Added' =>  array('label' => 'Time before Played', 'column' => true),
+        'LastPlayed' => array('label' => 'Last Played', 'column' => true)
     );
     
     private $TableType;
