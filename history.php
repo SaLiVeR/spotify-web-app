@@ -19,6 +19,7 @@ $H = new HISTORY;
 showHeader(array('search'=>false), 'history.js');
 /**********************************/
 ?>
+<div id="history-container">
 <h3>
     <a href="#" onclick="changeTable('recent')">Recent Songs</a>
     <a href="#" onclick="changeTable('popular')">Most Popular Songs</a>
@@ -27,6 +28,8 @@ showHeader(array('search'=>false), 'history.js');
 </h3>
 
 <?=$H->createTable('recent')?>
+
+</div>
 
 <?php
 /**********************************/

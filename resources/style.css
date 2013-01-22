@@ -337,6 +337,15 @@ tr.even {
     display: none;
 }
 
+.center {
+    text-align: center;
+}
+
+#history-container {
+    width: 800px;
+    margin: auto;
+}
+
 #footer {
     height : 50px;
     position: absolute;

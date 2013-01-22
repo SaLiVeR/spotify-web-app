@@ -81,7 +81,7 @@ CLASS HISTORY {
     }
     
     private function add_placeholder_row() {
-        $this->Output .= "<tr><td colspan='" . $this->Cols . "'>There are currently no songs to show.</td></tr>";
+        $this->Output .= "<tr><td class='center' colspan='" . $this->Cols . "'>There are currently no songs to show.</td></tr>";
     }
     
     private function build_table_header() {
@@ -109,8 +109,17 @@ CLASS HISTORY {
             $this->Output .= "<tr class='" . $a . "'>";
             foreach($D as $Col=>$Val) {
                 switch($Col) {
+                    case 'Duration':
+                        echo "<td>" . formatTime($Val) . "</td>";
+                        break;
+                    case 'ChooserID':
+                        echo "<td>" . formatUsername($Val, $Data['Chooser']) . "</td>";
+                        break;
+                    case 'Added':
+                        echo "<td>" . timeDiff(strtotime($Data['Played']) - strtotime($Val)) . "</td>";
+                        break;
                     default:
-                        echo "<td>" . $Val . "</td>";
+                        echo "<td>" . (is_number($Val)) ? number_format($Val) : display_str($Val) . "</td>";
                 }
             }
         }
