@@ -62,10 +62,11 @@ function moveTable(table, Xpos, tableToRemove) {
     $(table).animate({
         position: 'absolute',
         left: Xpos + 'px',
-        queue: false
-    }, 1000, function() {
-        cleanUp(tableToRemove);
-    });
+        queue: false,
+        complete: function() {
+            cleanUp(tableToRemove);
+        }
+    }, 1000);
 }
 
 function cleanUp(tableToRemove) {
