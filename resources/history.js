@@ -46,16 +46,18 @@ function createTable(tableData, direction) {
     
     var newTable = document.createElement('div');
     newTable = $(newTable).html(tableData).addClass('table-container');
-    newTable = newTable.css('top', currentOffsets.top + 'px');
+    newTable = newTable.css('position', 'absolute').css('top', currentOffsets.top + 'px');
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
     
     moveTable(newTable, currentOffsets.left);
-    moveTable($('#table-container'), destinationPosition);
+    
+    currentTable.css('position', 'absolute').css('left', currentOffsets.left).css('right', currentOffsets.top);
+    moveTable(currentTable, destinationPosition);
 }
 
 function moveTable(table, Xpos) {
-    $(table).css('position', 'absolute')
+    $(table)
     $(table).animate({
         position: 'absolute',
         left: Xpos + 'px',
