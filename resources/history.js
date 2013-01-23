@@ -29,7 +29,7 @@ function changeTable(table) {
 }
 
 function createTable(tableData, direction) {
-    var currentOffsets = $('#table-container').offset()
+    var currentOffsets = $($('#table-container').children()[1]).offset();
     
     var windowWidth = $(window).width();
     
