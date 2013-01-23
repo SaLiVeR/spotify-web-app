@@ -17,7 +17,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-
+    overflow-x: hidden
 }
 ol, ul {
 	list-style: none;
@@ -341,7 +341,7 @@ tr.even {
     text-align: center;
 }
 
-#history-container table {
+#history-container #table-container {
     width: 1200px;
     margin: auto;
 }

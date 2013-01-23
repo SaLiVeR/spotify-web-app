@@ -45,7 +45,7 @@ function createTable(tableData, direction) {
     
     var newTable = document.createElement('div');
     newTable = $(newTable).html(tableData).attr('id', 'new-table');
-    newTable = newTable.css('position', 'absolute').css('top', currentOffsets.top + 'px');
+    newTable = newTable.css('top', currentOffsets.top + 'px');
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
     
@@ -54,7 +54,9 @@ function createTable(tableData, direction) {
 }
 
 function moveTable(table, Xpos) {
+    $(table).css('position', 'absolute')
     $(table).animate({
+        position: 'absolute',
         left: Xpos + 'px',
         queue: false
     }, 1000, function() {
