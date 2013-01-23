@@ -49,13 +49,19 @@ function createTable(tableData, direction) {
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
     
-    moveTable(newTable, currentOffsets, destinationPosition);
+    moveNewTable(newTable, currentOffsets.left);
+    moveExistingTable($('#table-container'), destinationPosition);
 }
 
-function moveTable(table, currentOffsets, destinationPosition) {
+function moveTable(table, Xpos) {
     $(table).animate({
-        left: currentOffsets.left + 'px'
-    }, 2000, function() {
-        // Animation complete.
+        left: Xpos + 'px',
+        queue: false
+    }, 1000, function() {
+        cleanUp();
     });
+}
+
+function cleanUp() {
+    return;
 }
