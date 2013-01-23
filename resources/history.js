@@ -29,7 +29,7 @@ function changeTable(table) {
 }
 
 function createTable(tableData, direction) {
-    var currentOffsets = $('#history-container').offset()
+    var currentOffsets = $('#table-container').offset()
     
     var windowWidth = $(window).width();
     
@@ -55,7 +55,7 @@ function createTable(tableData, direction) {
 function moveTable(table, currentOffsets, destinationPosition) {
     $(table).animate({
         left: currentOffsets.left + 'px'
-    }, 5000, function() {
+    }, 2000, function() {
         // Animation complete.
     });
 }
