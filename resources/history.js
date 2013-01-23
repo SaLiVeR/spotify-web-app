@@ -52,10 +52,10 @@ function createTable(tableData, direction) {
     
     finished = 0;
     
-    moveTable(newTable, currentOffsets.left, tableToRemove);
+    moveTable(newTable, currentOffsets.left, currentTable);
     
     currentTable.css('position', 'absolute').css('left', currentOffsets.left).css('top', currentOffsets.top);
-    moveTable(currentTable, destinationPosition, tableToRemove);
+    moveTable(currentTable, destinationPosition, currentTable);
 }
 
 function moveTable(table, Xpos, tableToRemove) {
