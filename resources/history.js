@@ -44,8 +44,8 @@ function createTable(tableData, direction) {
         var destinationPosition = position1;
     }
     
-    var newTable = document.createElement('div').addClass('table-container');
-    newTable = $(newTable).html(tableData);
+    var newTable = document.createElement('div');
+    newTable = $(newTable).html(tableData).addClass('table-container');
     newTable = newTable.css('top', currentOffsets.top + 'px');
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
