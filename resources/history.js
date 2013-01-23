@@ -50,23 +50,27 @@ function createTable(tableData, direction) {
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
     
-    moveTable(newTable, currentOffsets.left);
+    finished = 0;
+    
+    moveTable(newTable, currentOffsets.left, tableToRemove);
     
     currentTable.css('position', 'absolute').css('left', currentOffsets.left).css('top', currentOffsets.top);
-    moveTable(currentTable, destinationPosition);
+    moveTable(currentTable, destinationPosition, tableToRemove);
 }
 
-function moveTable(table, Xpos) {
-    $(table)
+function moveTable(table, Xpos, tableToRemove) {
     $(table).animate({
         position: 'absolute',
         left: Xpos + 'px',
         queue: false
     }, 1000, function() {
-        cleanUp();
+        cleanUp(tableToRemove);
     });
 }
 
-function cleanUp() {
+function cleanUp(tableToRemove) {
+    if(finished++ > 1) {
+        tableToRemove.remove();
+    }
     return;
 }
