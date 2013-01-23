@@ -52,7 +52,7 @@ function createTable(tableData, direction) {
     
     moveTable(newTable, currentOffsets.left);
     
-    currentTable.css('position', 'absolute').css('left', currentOffsets.left).css('right', currentOffsets.top);
+    currentTable.css('position', 'absolute').css('left', currentOffsets.left).css('top', currentOffsets.top);
     moveTable(currentTable, destinationPosition);
 }
 
