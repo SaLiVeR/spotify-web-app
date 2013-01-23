@@ -49,8 +49,8 @@ function createTable(tableData, direction) {
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
     
-    moveNewTable(newTable, currentOffsets.left);
-    moveExistingTable($('#table-container'), destinationPosition);
+    moveTable(newTable, currentOffsets.left);
+    moveTable($('#table-container'), destinationPosition);
 }
 
 function moveTable(table, Xpos) {
