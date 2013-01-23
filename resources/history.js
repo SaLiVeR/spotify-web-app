@@ -61,7 +61,8 @@ function createTable(tableData, direction) {
 function moveTable(table, Xpos, tableToRemove) {
     $(table).animate({
         position: 'absolute',
-        left: Xpos + 'px',
+        left: Xpos + 'px'
+    }, {
         queue: false,
         duration: 1000,
         complete: function() {
