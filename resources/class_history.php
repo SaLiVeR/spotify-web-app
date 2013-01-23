@@ -40,7 +40,6 @@ CLASS HISTORY {
             'tables' => array(
                 'history AS h',
                 'JOIN track_info AS ti ON h.trackid = ti.trackid',
-                'LEFT JOIN votes AS v ON h.trackid = v.trackid',
                 'LEFT JOIN history AS h2 ON h.trackid = h2.trackid'
             ),
             'group' => 'GROUP BY h.trackid',
@@ -48,13 +47,19 @@ CLASS HISTORY {
         ),
         'popartist' => array(
             'columns' => array(
-            
+                'Artist' => 'ti.artist',
+                'Tracks' => 'COUNT(DISTINCT h2.trackid)',
+                'TotalPlays' => 'COUNT(h2.trackid)',
+                'TotalVotes' => 'SUM(h2.votes)'
             ),
             'tables' => array(
-            
+                'history AS h',
+                'JOIN track_info AS ti ON h.trackid = ti.trackid',
+                'JOIN track_info AS ti2 ON ti.artist = ti2.artist',
+                'LEFT JOIN history AS h2 ON ti2.trackid = h2.trackid'
             ),
-            'group' => '',
-            'order' => ''
+            'group' => 'GROUP BY ti.artist',
+            'order' => 'ORDER BY TotalPlays DESC'
         ),
         'popuser' => array(
             'columns' => array(
@@ -79,7 +84,9 @@ CLASS HISTORY {
         'Chooser' => array('label' => '', 'column' => false),
         'Played' => array('label' => 'played', 'column' => true),
         'Added' =>  array('label' => 'Time before Played', 'column' => true),
-        'LastPlayed' => array('label' => 'Last Played', 'column' => true)
+        'LastPlayed' => array('label' => 'Last Played', 'column' => true),
+        'Tracks' => array('label' => 'Unique Songs', 'column' => true),
+        'TotalPlays' => array('label' => 'Total Plays', 'column' => true)
     );
     
     private $TableType;
