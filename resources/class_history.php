@@ -59,17 +59,22 @@ CLASS HISTORY {
                 'LEFT JOIN history AS h2 ON ti2.trackid = h2.trackid'
             ),
             'group' => 'GROUP BY ti.artist',
-            'order' => 'ORDER BY TotalPlays DESC'
+            'order' => 'ORDER BY TotalVotes DESC'
         ),
         'popuser' => array(
             'columns' => array(
-            
+                'ChooserID' => 'u.ID',
+                'Chooser' => 'u.Username',
+                'TotalVotes' => 'SUM(h2.votes)',
+                'TotalPlays' => 'COUNT(h2.trackid)'
             ),
             'tables' => array(
-            
+                'history AS h',
+                'LEFT JOIN history AS h2 ON h.addedBy = h2.addedBy',
+                'JOIN users AS u ON h.addedBy = u.ID'
             ),
-            'group' => '',
-            'order' => ''
+            'group' => 'GROUP BY h.addedBy',
+            'order' => 'ORDER BY TotalVotes DESC'
         )
     );
     //Configuration of the columns. Whether not they need a new column, and their label
@@ -86,7 +91,8 @@ CLASS HISTORY {
         'Added' =>  array('label' => 'Time before Played', 'column' => true),
         'LastPlayed' => array('label' => 'Last Played', 'column' => true),
         'Tracks' => array('label' => 'Unique Songs', 'column' => true),
-        'TotalPlays' => array('label' => 'Total Plays', 'column' => true)
+        'TotalPlays' => array('label' => 'Total Plays', 'column' => true),
+        'TotalVotes' => array('label' => 'Total Votes', 'column' => true)
     );
     
     private $TableType;
