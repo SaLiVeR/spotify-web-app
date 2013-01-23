@@ -23,7 +23,7 @@ function changeTable(table) {
         "data": {'action': 'gethistorytable', 'table': table},
         "dataType": "html",
         "success": function(data) {
-            moveTable(data, direction);
+            createTable(data, direction);
        }
     });
 }
