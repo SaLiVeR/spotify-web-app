@@ -63,10 +63,12 @@ function moveTable(table, Xpos, tableToRemove) {
         position: 'absolute',
         left: Xpos + 'px',
         queue: false,
+        duration: 1000,
         complete: function() {
+            alert('finished');
             cleanUp(tableToRemove);
         }
-    }, 1000);
+    });
 }
 
 function cleanUp(tableToRemove) {
