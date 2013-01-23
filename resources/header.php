@@ -41,8 +41,8 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
         <h2><a href="index.php" onclick="changeNav('index.php')">Title</a></h2>
         <div id="navigation">
             <ul>
-                <li><a href="index.php" onclick="changeNav('index.php')">Voting</a></li>
-                <li><a href="history.php" onclick="changeNav('history.php')">History</a></li>
+                <a href="index.php" onclick="changeNav('index.php')" id="nav-index"><li>Voting</li></a>
+                <a href="history.php" onclick="changeNav('history.php')" id="nav-history"><li>History</li></a>
             </ul>
         </div>
 <?php

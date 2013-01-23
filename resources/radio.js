@@ -108,7 +108,6 @@ function showTracks(data) {
     for(t in data) {
         row = (row === 'even') ? 'odd' : 'even';
         html += "<tr id='" + sanitizeID(data[t].file) + "' class='row" + row + "'><td>" + data[t].Title + "</td><td>" + data[t].Artist + "</td><td>";
-        //html += "<span class='hidden'>" + data[t].popularity + "</span><span class='popularity'><span class='popularity-value' style='width:" + data.tracks[t].popularity*100 + "%'></span></span></td><td>";
         html += formatTime(data[t].Time) + "</td><td>" + data[t].Album + "</td></tr>";
         if(current++ > limit) break;
     }

@@ -162,22 +162,19 @@ body {
     text-align: center;
 }
 .col1 {
-    width: 300px;
+    width: 320px;
 }
 .col2 {
-    width: 200px;
+    width: 210px;
 }
 .col3 {
     text-align: right;
     width: 60px;
 }
 .col4 {
-    width: 50px;
+    width: 170px;
 }
 .col5 {
-    width: 150px;
-}
-.col6 {
     width: 65px;
 }
 .votebox{
@@ -219,17 +216,6 @@ body {
 }
 .voteup-green {
     background: url('imgs/arrow_up_green_16x16.png') center center no-repeat;
-}
-.popularity, .popularity-value {
-    margin: auto;
-    width: 30px;
-    height: 8px;
-    display: block;
-    background: url('popularity.png') repeat-x;
-}
-.popularity-value {
-    float: left;
-    background-position: 0px -8px;
 }
 .addsong {
     float: right;

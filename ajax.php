@@ -68,18 +68,16 @@ switch($_GET['action']) {
                 'Title' => $data->track->name,
                 'Artist' => $data->track->artists[0]->name,
                 'Album' => $data->track->album->name,
-                'Time' => $data->track->length,
-                'Popularity' => $data->track->popularity
+                'Time' => $data->track->length
             );
             
             //Add info to the track catalogue
-            $DB->query("INSERT IGNORE INTO track_info (trackid, Title, Artist, Album, Duration, Popularity) VALUES(
+            $DB->query("INSERT IGNORE INTO track_info (trackid, Title, Artist, Album, Duration) VALUES(
                 '" . $_GET['track'] . "',
                 '" . db_string($Track['Title']) . "',
                 '" . db_string($Track['Artist']) . "',
                 '" . db_string($Track['Album']) . "',
-                '" . db_string($Track['Time']) . "',
-                '" . db_string($Track['Popularity']) . "')");
+                '" . db_string($Track['Time']) . "')");
         }
         
         //Add it to the voting list
@@ -117,8 +115,7 @@ switch($_GET['action']) {
                 ti.Title,
                 ti.Artist,
                 ti.Album,
-                ti.Duration,
-                ti.Popularity
+                ti.Duration
             FROM voting_list AS vl
             JOIN track_info AS ti
                 ON vl.trackid = ti.trackid
@@ -141,8 +138,7 @@ switch($_GET['action']) {
                         ti.Title,
                         ti.Artist,
                         ti.Album,
-                        ti.Duration,
-                        ti.Popularity
+                        ti.Duration
                     FROM voting_list AS vl
                     JOIN track_info AS ti 
                         ON vl.trackid = ti.trackid 
@@ -163,9 +159,8 @@ switch($_GET['action']) {
                         <th class="col1">Track</th>
                         <th class="col2">Artist</th>
                         <th class="col3"></th>
-                        <th class="col4"></th>
-                        <th class="col5">Album</th>
-                        <th class="col6"></th>
+                        <th class="col4">Album</th>
+                        <th class="col5"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -182,9 +177,8 @@ switch($_GET['action']) {
                         <td class="col1"><?=display_str($VT['Title'])?></td>
                         <td class="col2"><?=display_str($VT['Artist'])?></td>
                         <td class="col3"><?=get_time($VT['Duration'])?></td>
-                        <td class="col4"><span class="popularity"><span class="popularity-value" style="width: <?=$VT['Popularity']*100?>%;"></span></span></td>
-                        <td class="col5"><?=display_str($VT['Album'])?></td>
-                        <td class="col6 votebox">
+                        <td class="col4"><?=display_str($VT['Album'])?></td>
+                        <td class="col5 votebox">
                             <? show_arrow($VT['trackid'], 'down', $counter); ?>
                             <span id="score-<?=sanitizeID($VT['trackid'])?>" class="score"><?=$VT['Score']?></span>
                             <? show_arrow($VT['trackid'], 'up', $counter); ?>
