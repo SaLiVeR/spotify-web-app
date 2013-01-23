@@ -63,7 +63,7 @@ CLASS HISTORY {
         ),
         'popuser' => array(
             'columns' => array(
-                'ChooserID' => 'u.ID',
+                'UserID' => 'u.ID',
                 'Chooser' => 'u.Username',
                 'TotalVotes' => 'SUM(h2.votes)',
                 'TotalPlays' => 'COUNT(h2.trackid)'
@@ -92,7 +92,8 @@ CLASS HISTORY {
         'LastPlayed' => array('label' => 'Last Played', 'column' => true),
         'Tracks' => array('label' => 'Unique Songs', 'column' => true),
         'TotalPlays' => array('label' => 'Total Plays', 'column' => true),
-        'TotalVotes' => array('label' => 'Total Votes', 'column' => true)
+        'TotalVotes' => array('label' => 'Total Votes', 'column' => true),
+        'UserID' => array('label' => 'Added By', 'column' => true)
     );
     
     private $TableType;
@@ -164,6 +165,7 @@ CLASS HISTORY {
                     case 'Duration':
                         $this->Output .= "<td>" . get_time($Val) . "</td>";
                         break;
+                    case 'UserID':
                     case 'ChooserID':
                         $this->Output .= "<td>" . formatUsername($Val, $D['Chooser']) . "</td>";
                         break;
