@@ -66,14 +66,13 @@ function moveTable(table, Xpos, tableToRemove) {
         queue: false,
         duration: 1000,
         complete: function() {
-            alert('finished');
             cleanUp(tableToRemove);
         }
     });
 }
 
 function cleanUp(tableToRemove) {
-    if(finished++ > 1) {
+    if(++finished > 1) {
         tableToRemove.remove();
     }
     return;
