@@ -27,7 +27,7 @@ showHeader(array('search'=>false), 'history.js');
     <a href="#" onclick="changeTable('popuser')">Users With Most Votes</a>
 </h3>
 
-<div id="table-container">
+<div class="table-container">
 <?=$H->createTable('recent')?>
 </div>
 

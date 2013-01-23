@@ -341,9 +341,13 @@ tr.even {
     text-align: center;
 }
 
-#history-container #table-container {
+#history-container .table-container {
     width: 1200px;
     margin: auto;
+}
+
+#history-container table {
+    width: 100%;
 }
 
 #history-container #history-navigation {

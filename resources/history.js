@@ -29,7 +29,8 @@ function changeTable(table) {
 }
 
 function createTable(tableData, direction) {
-    var currentOffsets = $($('#table-container').children()[1]).offset();
+    var currentTable = $('#history-container .table-container');
+    var currentOffsets = currentTable.offset();
     
     var windowWidth = $(window).width();
     
@@ -43,8 +44,8 @@ function createTable(tableData, direction) {
         var destinationPosition = position1;
     }
     
-    var newTable = document.createElement('div');
-    newTable = $(newTable).html(tableData).attr('id', 'new-table');
+    var newTable = document.createElement('div').addClass('table-container');
+    newTable = $(newTable).html(tableData);
     newTable = newTable.css('top', currentOffsets.top + 'px');
     newTable = newTable.css('left', initialPosition + 'px');
     $('#history-container').append(newTable);
