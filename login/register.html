@@ -1,0 +1,31 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" href="style.css" type="text/css"></link>
+	<link rel="stylesheet" href="register-style.css" type="text/css"></link>
+	<script src="../resources/jquery.min.js" type="text/javascript"></script>	
+	<script src="js/custom.js" type="text/javascript"></script>
+	<link rel="icon" href="/portfoliostuff/images/favicon.ico" type="image/x-icon"></link>
+	<link rel="shortcut icon" href="/portfoliostuff/images/favicon.ico" type="image/x-icon"></link>
+</head>
+<body>
+<div class="panel registerpanel">
+	<h3>Register</h3>
+	<form method="POST" action="register.php">
+	<div class="panelbuttons">	
+		<div class="inputblock userblock"><input type="text" name="username" /></div>
+		<div class="inputblock emailblock"><input type="text" name="email" /></div>
+		<div class="inputblock emailcheckblock"><input type="text" name="emailcheck" /></div>
+		<div class="inputblock passwordblock"><input class="passwordstrengthcheck" type="password" name="password" /></div>
+		<div class="validbar"><div class="validinnerbar"></div></div>
+	</div>
+	<div class="panelbottom">
+		<a href="../Login"><p class="panelregister">Registered already?</p></a>
+		<input class="active" type="submit" value="Register" />
+	</div>
+	</form>
+</div>
+</body>
+</html>

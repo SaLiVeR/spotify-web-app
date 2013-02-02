@@ -9,6 +9,9 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
     header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
     header('Pragma: no-cache');
 
+if(!isset($_COOKIE['musUser'])){
+    header("Location: login/");
+}
 ?>
 <!DOCTYPE HTML>
 <head>
@@ -18,7 +21,7 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
 	<title>Spotify Player</title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link href="<?=RESOURCE_DIR?>style.css" rel="stylesheet" type="text/css" />
-    
+    <link href="<?=RESOURCE_DIR?>buttons.css" rel="stylesheet" type="text/css" />    
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.min.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>global.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.dataTables.js"></script>
@@ -36,13 +39,18 @@ function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
 ?>
     
 </head>
-<body id="<?=$_SERVER['PHP_SELF']?>">
+<body id="<?=$_SERVER['PHP_SELF']?>" class=
+    <?php
+        $ar = explode('/', $_SERVER['PHP_SELF']);
+        echo substr($ar[count($ar)-1], 0, -4);
+    ?>
+    >
     <div id="header">       
         <h2><a href="index.php" onclick="changeNav('index.php')">Title</a></h2>
         <div id="navigation">
             <ul>
-                <a href="index.php" onclick="changeNav('index.php')" id="nav-index"><li>Voting</li></a>
-                <a href="history.php" onclick="changeNav('history.php')" id="nav-history"><li>History</li></a>
+                <a href="index.php" onclick="changeNav('index.php')" id="nav-index"><li class="button indexBtn">Voting</li></a>
+                <a href="history.php" onclick="changeNav('history.php')" id="nav-history"><li class="button historyBtn">History</li></a>
             </ul>
         </div>
 <?php

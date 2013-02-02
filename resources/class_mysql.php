@@ -30,7 +30,7 @@ class MYSQL {
     
 	private function connect() {
 		if(!$this->LinkID) {
-			$this->LinkID = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE, DB_PORT);
+			$this->LinkID = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
 			if(!$this->LinkID) {
 				$this->Errno = mysqli_connect_errno();
 				$this->Error = mysqli_connect_error();
