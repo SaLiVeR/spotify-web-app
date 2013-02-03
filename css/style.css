@@ -357,3 +357,156 @@ tr.even {
     clear: both;
     font-size: 10px;
 }
+
+.buttons{width:100%;text-align:center;margin-top: 10px;}
+.buttons .button{margin-bottom: 10px;}
+.hbtnncontainer{
+	margin: 2px;
+	overflow:auto;
+	display:block;
+	clear:both;
+}
+.hbtnncontainer .button{
+	clear: none !important;
+	float:left;
+	border-radius: 0;
+}
+.hbtnncontainer .button:first-child{
+	border-top-left-radius: 0.4em;
+	border-bottom-left-radius: 0.4em;
+}
+.hbtnncontainer .button:last-child{
+	border-top-right-radius: 0.4em;
+	border-bottom-right-radius: 0.4em;
+	clear: right;
+}
+.vbtnncontainer{
+	width:100%;
+	overflow:auto;
+	clear:both;
+}
+.buttons.inner{
+	float:left;
+}
+.vbtnncontainer .button{
+	display:block;
+	position:relative;
+	border-radius: 0;
+}
+.vbtnncontainer .button:first-child{
+	border-top-left-radius: 0.4em;
+	border-top-right-radius: 0.4em;
+}
+.vbtnncontainer .button:last-child{
+	border-bottom-left-radius: 0.4em;
+	border-bottom-right-radius: 0.4em;
+}
+.button{
+overflow:hidden;
+clear:both;
+display:inline-block;
+color: #000000;
+font-size: 12px;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration:none;
+text-align:center;
+background: #dddddd; /* Old browsers */
+background: -moz-linear-gradient(top, #dddddd 1%, #bbbbbb 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#dddddd), color-stop(100%,#bbbbbb)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #dddddd 1%,#bbbbbb 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #dddddd 1%,#bbbbbb 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #dddddd 1%,#bbbbbb 100%); /* IE10+ */
+background: linear-gradient(top, #dddddd 1%,#bbbbbb 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#bbbbbb',GradientType=0 ); /* IE6-9 */
+padding:8px 10px 8px 10px;
+border-radius: 0.4em;
+border: 1px solid #bbbbbb;
+}
+.main {font-weight: 700 !important;}
+.big {font-size: 18px !important;}
+.small {font-size: 12px !important;padding: 4px 6px 4px 6px;}
+.rounded {border-radius: 1.5em !important;}
+.button:hover{
+color: #ffffff;
+background: #f25d23; /* Old browsers */
+background: -moz-linear-gradient(top, #f47543 0%, #f25d23 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f47543), color-stop(99%,#f25d23)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #f47543 0%,#f25d23 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #f47543 0%,#f25d23 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #f47543 0%,#f25d23 99%); /* IE10+ */
+background: linear-gradient(top, #f47543 0%,#f25d23 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f47543', endColorstr='#f25d23',GradientType=0 ); /* IE6-9 */
+border: 1px solid #f25d23;
+}
+.active{
+color: #ffffff;
+background: #f25d23; /* Old browsers */
+background: -moz-linear-gradient(top, #f47543 0%, #f25d23 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f47543), color-stop(99%,#f25d23)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #f47543 0%,#f25d23 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #f47543 0%,#f25d23 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #f47543 0%,#f25d23 99%); /* IE10+ */
+background: linear-gradient(top, #f47543 0%,#f25d23 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f47543', endColorstr='#f25d23',GradientType=0 ); /* IE6-9 */
+border: 1px solid #f25d23;	
+}
+.danger{color:#ee0001;}
+.danger:hover{
+color: #ffffff;
+background: #ee0001; /* Old browsers */
+background: -moz-linear-gradient(top, #ee0001 0%, #cc0001 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ee0001), color-stop(99%,#cc0001)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #ee0001 0%,#cc0001 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #ee0001 0%,#cc0001 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #ee0001 0%,#cc0001 99%); /* IE10+ */
+background: linear-gradient(top, #ee0001 0%,#cc0001 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee0001', endColorstr='#cc0001',GradientType=0 ); /* IE6-9 */
+border: 1px solid #cc0001;
+}
+.icon:before {
+	content: '';
+	float:left;
+	position:relative;
+	margin-left: -6px;
+	margin-right: 3px;
+	height: 16px;
+	width: 16px;
+}
+.bigicon:before {
+	content: '';
+	float:left;
+	position:relative;
+	margin-left: -6px;
+	margin-right: 3px;
+	height: 20px;
+	width: 16px;
+}
+.topBtnContainer{
+	margin: 0 auto;
+	width: 688px;
+}
+.topBtn{
+	width: 150px;
+}
+/*Icon btns*//*
+.add:before {background: url('btnicons/add.png') center center no-repeat;}
+.alert:before {background: url('btnicons/alert.png') center center no-repeat;}
+.basket:before {background: url('btnicons/basket.png') center center no-repeat;}
+.clip:before {background: url('btnicons/clip.png') center center no-repeat;}
+.cloud:before {background: url('btnicons/cloud.png') center center no-repeat;}
+.cross:before {background: url('btnicons/cross.png') center center no-repeat;}
+.delete:before {background: url('btnicons/delete.png') center center no-repeat;}
+.down:before {background: url('btnicons/down.png') center center no-repeat;}
+.download:before {background: url('btnicons/download.png') center center no-repeat;}
+.edit:before {background: url('btnicons/pencil.png') center center no-repeat;}
+.email:before {background: url('btnicons/comment.png') center center no-repeat;}
+.facebook:before {background: url('btnicons/facebook.png') center center no-repeat;}
+.globe:before {background: url('btnicons/globe.png') center center no-repeat;}
+.home:before {background: url('btnicons/home.png') center center no-repeat;}
+.key:before {background: url('btnicons/key.png') center center no-repeat;}
+.lightning:before {background: url('btnicons/lightning.png') center center no-repeat;}
+.lock:before {background: url('btnicons/lock.png') center center no-repeat;}
+.print:before {background: url('btnicons/print.png') center center no-repeat;}
+.save:before {background: url('btnicons/save.png') center center no-repeat;}
+.search:before {background: url('btnicons/search.png') center center no-repeat;}
+.tick:before {background: url('btnicons/tick.png') center center no-repeat;}*/
