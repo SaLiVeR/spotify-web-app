@@ -16,6 +16,7 @@ require(RESOURCE_DIR . 'footer.php');
 require(RESOURCE_DIR . 'class_history.php');
 $H = new HISTORY;
 
+enforceLogin();
 showHeader('Playback History/Stats', array('search'=>false,'navigation'=>true), 'history.js');
 /**********************************/
 ?>

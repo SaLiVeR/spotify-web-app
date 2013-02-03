@@ -22,9 +22,9 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 	<meta name="author" content="MetalMichael" />
 
 	<title><?=$PageTitle?></title>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="<?=RESOURCE_DIR?>style.css" rel="stylesheet" type="text/css" />
-    <link href="<?=RESOURCE_DIR?>buttons.css" rel="stylesheet" type="text/css" />    
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
+    <link href="<?=RESOURCE_DIR?>css/style.css" rel="stylesheet" type="text/css" />
+    <link href="<?=RESOURCE_DIR?>css/buttons.css" rel="stylesheet" type="text/css" />    
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.min.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>global.js"></script>
 <?php
