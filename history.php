@@ -17,7 +17,7 @@ require(RESOURCE_DIR . 'class_history.php');
 $H = new HISTORY;
 
 enforceLogin();
-showHeader('Playback History/Stats', array('search'=>false,'navigation'=>true), 'history.js');
+showHeader('Playback History/Stats', array('search'=>false, 'navigation'=>true, 'login'=>false), 'history.js');
 /**********************************/
 ?>
 <div id="history-container">

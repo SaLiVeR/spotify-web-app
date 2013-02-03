@@ -37,7 +37,7 @@ if(isset($_POST['login'])) {
     
 }
 
-showHeader('Login', array('search'=>false, 'navigation'=>false));
+showHeader('Login', array('search'=>false, 'navigation'=>false, 'login'=>true));
 
 ?>
 <div class="panel loginpanel">

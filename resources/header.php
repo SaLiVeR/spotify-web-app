@@ -4,7 +4,7 @@
  * @author MetalMichael
  * @copyright 2012
  */
-function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>true), $JSIncludes=array()) {
+function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>true, 'login'=>false), $JSIncludes=array()) {
     
     header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
     header('Pragma: no-cache');
@@ -23,8 +23,17 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 
 	<title><?=$PageTitle?></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
+<?php
+    if($Options['login']) {
+?>
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+<?php
+    } else {
+?>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/buttons.css" rel="stylesheet" type="text/css" />    
+<?php
+    }
+?>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
 <?php
