@@ -173,7 +173,7 @@ CLASS HISTORY {
                         $this->Output .= "<td>" . timeDiff($Val) . "</td>";
                         break;
                     case 'Added':
-                        $this->Output .= "<td>" . timeDiff(strtotime($Val) - strtotime($D['Played']), 2, true, false, true) . "</td>";
+                        $this->Output .= "<td>" . timeDiff(strtotime($Val) - strtotime($D['Played'])) . "</td>";
                         break;
                     case 'Votes':
                     case 'PlayCount':
