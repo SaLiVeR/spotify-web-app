@@ -11,7 +11,7 @@ if(isset($_POST['login'])) {
     //Validation
     require(RESOURCE_DIR . 'class_validate.php');
     
-    $Val = new Validate($_POST, SITE_DEBUG);
+    $Val = new Validate($_POST, DEBUG_MODE);
     $Val->val('username', 'username', true, 'Invalid Username');
     $Val->val('password', 'string', true, 'Invalid Password', array('maxlength'=>30,'minlength'=>6));
     
@@ -51,7 +51,7 @@ showHeader('Login', array('search'=>false, 'navigation'=>false, 'login'=>true));
     	</div>
         
     	<div class="panelbottom">
-    		<a href="register.html"><p class="panelregister">Not yet registered?</p></a>
+    		<a href="register.php"><p class="panelregister">Not yet registered?</p></a>
     		<input class="active" type="submit" name="login" value="Login" />
     	</div>
     

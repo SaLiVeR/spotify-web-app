@@ -70,7 +70,7 @@ if(isset($_POST['register'])) {
 	}
 }
 
-showHeader('Register',array('search'=>false,'navigation'=>false), 'login.js')
+showHeader('Register', array('search'=>false,'navigation'=>false, 'login'=>true), 'login.js')
 
 ?>
 <div class="panel registerpanel">

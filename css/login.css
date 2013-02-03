@@ -279,3 +279,16 @@ border: 1px solid #cc0001;
 .save:before {background: url('btnicons/save.png') center center no-repeat;}
 .search:before {background: url('btnicons/search.png') center center no-repeat;}
 .tick:before {background: url('btnicons/tick.png') center center no-repeat;}*/
+
+#footer {
+    height : 50px;
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto 0 auto ;
+    width: 100%;
+    min-width: 800px;
+    text-align: center;
+    padding-top: 20px;
+    clear: both;
+    font-size: 10px;
+}
