@@ -314,4 +314,7 @@ if(USE_CACHE) {
     $Cache = new CACHE(MEMCACHED_ID);
 }
 
+require(RESOURCE_DIR . 'class_mcrypt.php');
+$Enc = new MCRYPT;
+
 ?>
