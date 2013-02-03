@@ -23,23 +23,23 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 
 	<title><?=$PageTitle?></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
-    <link href="<?=RESOURCE_DIR?>css/style.css" rel="stylesheet" type="text/css" />
-    <link href="<?=RESOURCE_DIR?>css/buttons.css" rel="stylesheet" type="text/css" />    
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.min.js"></script>
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>global.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/buttons.css" rel="stylesheet" type="text/css" />    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
 <?php
     if($Options['search']) {
 ?>
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.dataTables.js"></script>
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery-ui-1.9.1.custom.min.js"></script>
-    <script type="text/javascript" src="<?=RESOURCE_DIR?>boxshadow-hooks.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script type="text/javascript" src="js/boxshadow-hooks.js"></script>
 <?php
     }
     if(!empty($JSIncludes)) {
         $JSIncludes = explode(',', $JSIncludes);
         foreach($JSIncludes as $JS) {
 ?>
-    <script type="text/javascript" src="<?=RESOURCE_DIR . $JS?>"></script>
+    <script type="text/javascript" src="js/<?=$JS?>"></script>
 <?php
         }
     }
