@@ -16,7 +16,7 @@ require(RESOURCE_DIR . 'footer.php');
 require(RESOURCE_DIR . 'class_history.php');
 $H = new HISTORY;
 
-showHeader(array('search'=>false), 'history.js');
+showHeader('Playback History/Stats', array('search'=>false,'navigation'=>true), 'history.js');
 /**********************************/
 ?>
 <div id="history-container">

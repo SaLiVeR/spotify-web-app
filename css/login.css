@@ -110,3 +110,18 @@ a {text-decoration:none;}
   background-color:#333333;
   border:1px solid #444444;
 }
+
+.registerpanel {
+	width:450px;
+	height:350px;
+	margin-left:-225px;
+	margin-top:-175px;
+}
+.panel .panelbuttons {
+  margin:30px auto;
+}
+.panel .panelbuttons .emailblock{background: url('imgs/mail.png') no-repeat 7px center;}
+.panel .panelbuttons .emailcheckblock{background: url('imgs/mail.png') no-repeat 7px center;}
+/*Password strength*/
+.validbar{margin: 2px;width: 200px;height:5px;background-color: #bbb;border:1px solid #888;}
+.validinnerbar{width:0%;height:100%;background-color:#F25D23;}

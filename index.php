@@ -12,7 +12,7 @@ require(RESOURCE_DIR . 'header.php');
 //Footer
 require(RESOURCE_DIR . 'footer.php');
 
-showHeader(array('search'=>true), 'radio.js');
+showHeader('', array('search'=>true,'navigation'=>true), 'radio.js');
 
 //*********************************************
 ?>

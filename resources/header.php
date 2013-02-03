@@ -4,30 +4,37 @@
  * @author MetalMichael
  * @copyright 2012
  */
-function showHeader($Options=array('search'=>true), $JSIncludes=array()) {
+function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>true), $JSIncludes=array()) {
     
     header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
     header('Pragma: no-cache');
+    
+    if(empty($PageTitle)) {
+        $PageTitle = "LSUCS Radio";
+    } else {
+        $PageTitle .= " :: LSUCS Radio";
+    }
 
-if(!isset($_COOKIE['musUser'])){
-    header("Location: login/");
-}
 ?>
 <!DOCTYPE HTML>
 <head>
 	<meta http-equiv="content-type" content="text/html" />
 	<meta name="author" content="MetalMichael" />
 
-	<title>Spotify Player</title>
+	<title><?=$PageTitle?></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link href="<?=RESOURCE_DIR?>style.css" rel="stylesheet" type="text/css" />
     <link href="<?=RESOURCE_DIR?>buttons.css" rel="stylesheet" type="text/css" />    
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.min.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>global.js"></script>
+<?php
+    if($Options['search']) {
+?>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery.dataTables.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript" src="<?=RESOURCE_DIR?>boxshadow-hooks.js"></script>
 <?php
+    }
     if(!empty($JSIncludes)) {
         $JSIncludes = explode(',', $JSIncludes);
         foreach($JSIncludes as $JS) {
@@ -39,13 +46,17 @@ if(!isset($_COOKIE['musUser'])){
 ?>
     
 </head>
-<body id="<?=$_SERVER['PHP_SELF']?>" class=
+<body id="<?=$_SERVER['PHP_SELF']?>" class="
     <?php
+        //Insert blame for Matt here
         $ar = explode('/', $_SERVER['PHP_SELF']);
         echo substr($ar[count($ar)-1], 0, -4);
     ?>
-    >
-    <div id="header">       
+    ">
+    <div id="header">
+<?php
+    if($Options['navigation']) {
+?>       
         <h2><a href="index.php" onclick="changeNav('index.php')">Title</a></h2>
         <div id="navigation">
             <ul>
@@ -54,6 +65,7 @@ if(!isset($_COOKIE['musUser'])){
             </ul>
         </div>
 <?php
+    }
     if($Options['search']) {
 ?>        
         <form id="searchbox" method="get" onsubmit="updateSearch(); return false;">
