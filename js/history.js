@@ -1,6 +1,12 @@
+changingTable = false;
+
 function changeTable(table) {
+    if(changingTable) return;
+    
     var currentTable = $('#current-table').html();
     if(table == currentTable) return;
+    
+    changingTable = true;
     
     var direction;
     var otherDirection;
@@ -74,6 +80,7 @@ function moveTable(table, Xpos, tableToRemove) {
 function cleanUp(tableToRemove) {
     if(++finished > 1) {
         tableToRemove.remove();
+        changingTable = false;
     }
     return;
 }

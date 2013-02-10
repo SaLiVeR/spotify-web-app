@@ -79,6 +79,22 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 ?>        
         <form id="searchbox" method="get" onsubmit="updateSearch(); return false;">
             <span class="label">Search: </span><input type="text" id="searchinput" onfocus="updateSearch();" />
+            <div id="library-buttons">
+                <ul>
+                    <li>
+                        <img src="imgs/spotify-icon.png" class="library-icon" id="library-spotify" />
+                        <input type="checkbox" class="library-button" />
+                    </li>
+                    <li>
+                        <img src="imgs/youtube-icon.png" class="library-icon" id="library-youtube" />
+                        <input type="checkbox" class="library-button" />
+                    </li>
+                    <li>
+                        <img src="imgs/folder-icon.png" class="library-icon" id="library-local" />
+                        <input type="checkbox" class="library-button" />
+                    </li>
+                </ul>
+            </div>
         </form>
         <div id="search">
             <div id="search-results"></div>
