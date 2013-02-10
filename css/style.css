@@ -100,15 +100,27 @@ body {
     border-radius: 10px;
 }
 
-#library-buttons, #library-buttons ul, #library-buttons ul li {
+#library-buttons {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#library-buttons ul, #library-buttons ul li {
     display: inline;
+}
+
+#library-buttons .library-icon {
+    padding: 1px;
+}
+
+#library-buttons .library-button {
+    margin-bottom: 5px;
 }
 
 #searchbox {
     position: absolute;
     right: 200px;
-    top: 8px;
-    padding: 5px;
+    top: 2px;
     float: right;
     z-index:2;
     height: 25px;
