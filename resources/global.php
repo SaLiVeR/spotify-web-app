@@ -258,7 +258,7 @@ function enforceLogin() {
     global $DB, $Enc, $Cache;
     if(isset($_COOKIE['Session'])){
         $CookieInfo = explode('|<~>|', $Enc->decrypt($_COOKIE['Session']));
-        if(!is_array($CookieInfo) || count($CookieInfo) !== 2)                                  logout();
+        if(!is_array($CookieInfo) || count($CookieInfo) !== 2) logout();
         $SessionID = $CookieInfo[0];
         $UserID = $CookieInfo[1];
         if(USE_CACHE) {
@@ -268,7 +268,7 @@ function enforceLogin() {
             $DB->query("SELECT UserID FROM users_sessions WHERE SessionID = '" . db_string($SessionID) . "'");
             $Session = $DB->to_array();
         }
-        if(!$Session || empty($Session) || $Session['UserID'] !== $UserID) {
+        if(!$Session || empty($Session) || !array_key_exists('UserID', $Session) || $Session['UserID'] !== $UserID) {
             logout();
         }
     } else {
