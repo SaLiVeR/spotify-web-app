@@ -255,7 +255,7 @@ function logout() {
 }
 
 function enforceLogin() {
-    global $Enc, $Cache;
+    global $DB, $Enc, $Cache;
     if(isset($_COOKIE['Session'])){
         $CookieInfo = explode('|<~>|', $Enc->decrypt($_COOKIE['Session']));
         if(!is_array($CookieInfo) || count($CookieInfo) !== 2)                                  logout();
