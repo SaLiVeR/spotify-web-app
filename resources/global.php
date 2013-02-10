@@ -249,7 +249,6 @@ function display_array($Array, $Escape = array()) {
 }
 
 function logout() {
-    die('logout');    
     setcookie('Session', '', time()-3600, '/', false, true);
     header('Location: login.php');    
 }
