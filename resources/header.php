@@ -82,16 +82,22 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
             <div id="library-buttons">
                 <ul>
                     <li>
-                        <img src="imgs/spotify-icon.png" class="library-icon" id="library-spotify" />
-                        <input type="checkbox" class="library-button" />
+                        <label for="library-spotify">
+                            <img src="imgs/spotify-icon.png" class="library-icon" />
+                        </label>
+                        <input type="checkbox" class="library-button" id="library-spotify" />
                     </li>
                     <li>
-                        <img src="imgs/youtube-icon.png" class="library-icon" id="library-youtube" />
-                        <input type="checkbox" class="library-button" />
+                        <label for="library-youtube">
+                            <img src="imgs/youtube-icon.png" class="library-icon" />
+                        </label>
+                        <input type="checkbox" class="library-button" id="library-youtube" />
                     </li>
                     <li>
-                        <img src="imgs/folder-icon.png" class="library-icon" id="library-local" />
-                        <input type="checkbox" class="library-button" />
+                        <label for="library-local">
+                            <img src="imgs/folder-icon.png" class="library-icon" />
+                        </label>
+                        <input type="checkbox" class="library-button" id="library-local" />
                     </li>
                 </ul>
             </div>

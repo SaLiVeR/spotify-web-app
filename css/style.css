@@ -100,6 +100,10 @@ body {
     border-radius: 10px;
 }
 
+#library-buttons, #library-buttons ul, #library-buttons ul li {
+    display: inline;
+}
+
 #searchbox {
     position: absolute;
     right: 200px;
