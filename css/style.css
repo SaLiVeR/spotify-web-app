@@ -107,10 +107,12 @@ body {
 
 #library-buttons ul, #library-buttons ul li {
     display: inline;
+    padding: 0 2px;
 }
 
 #library-buttons .library-icon {
-    padding: 1px;
+    position: relative;
+    top: 5px;
 }
 
 #library-buttons .library-button {
@@ -119,7 +121,7 @@ body {
 
 #searchbox {
     position: absolute;
-    right: 200px;
+    right: 100px;
     top: 2px;
     float: right;
     z-index:2;
