@@ -4,12 +4,18 @@ function updateSearch() {
         hideSearch();
         return;
     }
+    
+    var libraries = []
+    $('#library-buttons input').each(function(index) {
+        if($(this).is(":checked")) libraries.push($(this).attr('id').substring($(this).attr('id').indexOf('-') + 1));
+    });
+    
     //var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
     var API = "http://192.168.1.109/spotify-web-app/mpd-api.php";
     $.ajax({
         "type": "GET",
         "url": API,
-        "data": {'action': 'search', 'search': search},
+        "data": {'action': 'search', 'search': search, 'libaries': libarires.join('|')},
         "dataType": "json",
         "success": function(data) {
             if(typeof data === 'object') {
