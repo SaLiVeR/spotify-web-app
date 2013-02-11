@@ -17,7 +17,7 @@ switch($_GET['action']) {
     case 'search':
         if(!isset($_GET['search'])) invalid();
         
-        $Libraries = (isset($_GET['libaries'])) ? $_GET['libraries'] : 'any';
+        $Libraries = (isset($_GET['libraries'])) ? $_GET['libraries'] : 'any';
         
         $Results = $MPD->Find($Libraries, $_GET['search']);
         echo json_encode($Results);
