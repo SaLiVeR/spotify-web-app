@@ -723,18 +723,18 @@ class MPD {
     function Find($type, $string) {
         if($this->debugging)
             echo "mpd->Find()\n";
-        if(!in_array($type, array(
+        /*if(!in_array($type, array(
             MPD_SEARCH_ARTIST,
             MPD_SEARCH_ALBUM,
             MPD_SEARCH_TITLE,
             MPD_SEARCH_ANY))) {
             $this->errStr = "mpd->Find(): invalid find type";
             return null;
-        } else {
+        } else {*/
             if(is_null($resp = $this->SendCommand(MPD_CMD_FIND, $type, $string)))
                 return null;
             $searchlist = $this->_parseFileListResponse($resp);
-        }
+        //}
         if($this->debugging)
             echo "mpd->Find() / return " . print_r($searchlist) . "\n";
         return $searchlist;
