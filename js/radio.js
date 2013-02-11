@@ -15,7 +15,7 @@ function updateSearch() {
     $.ajax({
         "type": "GET",
         "url": API,
-        "data": {'action': 'search', 'search': search, 'libaries': libarires.join('|')},
+        "data": {'action': 'search', 'search': search, 'libaries': libraries.join('|')},
         "dataType": "json",
         "success": function(data) {
             if(typeof data === 'object') {
