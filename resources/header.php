@@ -71,7 +71,8 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
         <div id="dropzone">
             <h3>Drop Audio File(s) To Upload</h3>
             <h4>Supported formats: MP3, M4A, WAV, FLAC, OGG</h4>
-            <p>Once uploaded the file(s) will be checked manually, before being approved to be added to the local library. Upload progress can be monitored in the bottom right corner.</p>
+            <p>Once uploaded the file(s) will be checked manually, before being approved to be added to the local library. Upload progress can be monitored in the bottom right corner.<br />
+            Max File Size: <?=formatBytes(MAX_UPLOAD_SIZE)?></p>
         </div>
     </div>
 <?php
