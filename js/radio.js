@@ -57,6 +57,11 @@ $(document).bind('dragover', function (e) {
     }, 100);
 });
 
+$('#fileupload').bind('fileuploadprogress', function (e, data) {
+    // Log the current bitrate for this upload:
+    console.log(data);
+});
+
 $(document).bind('drop dragover', function (e) {
     e.preventDefault();
 });
