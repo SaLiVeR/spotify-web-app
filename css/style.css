@@ -141,8 +141,9 @@ body {
     
     color: #FFF;
     text-align: center;
-    max-width: 200px;
+    max-width: 800px;
     margin: auto;
+    margin-top: 15%;
 }
 #dropzone.fade {
     -webkit-transition: all 0.3s ease-out;
