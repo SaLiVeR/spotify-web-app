@@ -123,6 +123,7 @@ body {
     display: none;
 }
 #dropzone.in {
+    display: block;
     background-image: url('imgs/black20.png');
     width: 100%;
     height: 100%;

@@ -38,7 +38,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 <?php
     if($Options['search']) {
 ?>
-    <script type="text/javascript" src="js/jquery.dataTables.mins.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript" src="js/boxshadow-hooks.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload"></script>
