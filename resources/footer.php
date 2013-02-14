@@ -10,8 +10,10 @@ function showFooter($Options=array('copyright'=>true)) {
         &copy;MetalMichael 2012
 <?php
     }
-}
 ?>
     </div>
 </body>
 </html>
+<?php
+}
+?>
