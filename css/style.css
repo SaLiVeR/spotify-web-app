@@ -119,6 +119,28 @@ body {
     margin-bottom: 5px;
 }
 
+#dropzone {
+    display: none;
+}
+#dropzone.in {
+    background-image: url('imgs/black20.png');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+}
+#dropzone.hover {
+    background-image: url('imgs/black40.png');
+}
+#dropzone.fade {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+
 #searchbox {
     position: absolute;
     right: 100px;

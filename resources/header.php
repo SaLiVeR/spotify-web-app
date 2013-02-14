@@ -5,7 +5,6 @@
  * @copyright 2012
  */
 function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>true, 'login'=>false), $JSIncludes=array()) {
-    
     header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
     header('Pragma: no-cache');
     
@@ -58,12 +57,20 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
     
 </head>
 <body id="<?=$_SERVER['PHP_SELF']?>" class="
-    <?php
+<?php
         //Insert blame for Matt here
         $ar = explode('/', $_SERVER['PHP_SELF']);
         echo substr($ar[count($ar)-1], 0, -4);
-    ?>
+?>
     ">
+<?php
+        //DropZone effects (the body is actually the dropzone, this just comes on top
+        if($Options['search']) {
+?>
+    <div id="dropzone"></div>
+<?php
+        }
+?>
     <div id="header">
 <?php
     if($Options['navigation']) {
