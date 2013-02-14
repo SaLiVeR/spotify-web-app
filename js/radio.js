@@ -27,6 +27,16 @@ function updateSearch() {
     });
 }
 
+$(function () {
+    'use strict';
+
+    // Initialize the jQuery File Upload widget:
+    $('body').fileupload({
+        url: 'upload.php'
+    });
+
+});
+
 //Controller function managing all movements. The only one that needs to be called
 function moveRow(id, distance) {
     var o = $('#row-' + id);
