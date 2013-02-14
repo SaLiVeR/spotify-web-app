@@ -67,7 +67,10 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
         //DropZone effects (the body is actually the dropzone, this just comes on top
         if($Options['search']) {
 ?>
-    <div id="dropzone"></div>
+    <div id="dropzone">
+        <h3>Drop Audio File(s) To Upload</h3>
+        <p>Supported formats: MP3, M4A, WAV, FLAC, OGG</p>
+    </div>
 <?php
         }
 ?>
