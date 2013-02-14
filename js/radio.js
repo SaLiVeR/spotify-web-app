@@ -39,7 +39,7 @@ $(function () {
 });
 
 $(document).bind('dragover', function (e) {
-    var dropZone = $('#dropzone'),
+    var dropZone = $('#dropcanvas'),
         timeout = window.dropZoneTimeout;
     if (!timeout) {
         dropZone.addClass('in');
