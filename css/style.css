@@ -125,19 +125,24 @@ body {
 }
 #dropcanvas.in {
     display: block;
-    background-image: url('imgs/black20.png');
+    background-image: url('imgs/black40.png');
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 3;
 }
 #dropzone {
-    background-image: url('imgs/black40.png');
+    background-image: url('imgs/black80.png');
     padding: 10px;
     border: 2px solid black;
     -webkit-border-radius: 45px;
     -moz-border-radius: 45px;
     border-radius: 45px;
+    
+    color: #FFF;
+    text-align: center;
+    max-width: 200px;
+    margin: auto;
 }
 #dropzone.fade {
     -webkit-transition: all 0.3s ease-out;
