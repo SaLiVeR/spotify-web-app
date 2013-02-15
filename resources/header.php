@@ -135,19 +135,19 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
                 <ul>
                     <li>
                         <label for="library-spotify">
-                            <img src="imgs/spotify-icon.png" alt="Spotify Icon" title="Spotify" class="library-icon" />
+                            <img src="img/spotify-icon.png" alt="Spotify Icon" title="Spotify" class="library-icon" />
                         </label>
                         <input type="checkbox" class="library-button" id="library-spotify" />
                     </li>
                     <li>
                         <label for="library-youtube">
-                            <img src="imgs/youtube-icon.png" alt="Youtube Icon" title="Youtube" class="library-icon" />
+                            <img src="img/youtube-icon.png" alt="Youtube Icon" title="Youtube" class="library-icon" />
                         </label>
                         <input type="checkbox" class="library-button" id="library-youtube" />
                     </li>
                     <li>
                         <label for="library-local">
-                            <img src="imgs/folder-icon.png" alt="Local Icon" title="Local" class="library-icon" />
+                            <img src="img/folder-icon.png" alt="Local Icon" title="Local" class="library-icon" />
                         </label>
                         <input type="checkbox" class="library-button" id="library-local" />
                     </li>
