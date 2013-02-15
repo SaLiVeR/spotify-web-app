@@ -199,10 +199,6 @@ body {
 .fileupload-buttonbar .ui-progressbar-value {
    background: url(../img/progressbar.gif);
 }
-.fileupload-buttonbar .fade,
-.files .fade {
-   display: none;
-}
 .fileupload-loading {
    position: absolute;
    left: 50%;
