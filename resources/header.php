@@ -45,6 +45,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
     <script type="text/javascript" src="js/jquery.fileupload-fp.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload-jui.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload-ui.js"></script>
+    <script type="text/javascript" src="js/tmpl.min.js"></script>
 <?php
     }
     if(!empty($JSIncludes)) {
