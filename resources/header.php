@@ -34,15 +34,17 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
     }
 ?>
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
 <?php
     if($Options['search']) {
 ?>
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript" src="js/boxshadow-hooks.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload"></script>
     <script type="text/javascript" src="js/jquery.fileupload-fp.js"></script>
+    <script type="text/javascript" src="js/jquery.fileupload-jui.js"></script>
+    <script type="text/javascript" src="js/jquery.fileupload-ui.js"></script>
 <?php
     }
     if(!empty($JSIncludes)) {
@@ -74,6 +76,39 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
             <p>Once uploaded the file(s) will be checked manually, before being approved to be added to the local library. Upload progress can be monitored in the bottom right corner.<br />
             Max File Size: <?=formatBytes(MAX_UPLOAD_SIZE)?></p>
         </div>
+        <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="icon-ban-circle icon-white"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="icon-trash icon-white"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+            </div>
+            <div class="span5 fileupload-progress fade">
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="bar" style="width:0%;"></div>
+                </div>
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <div class="fileupload-loading"></div>
+        <br />
+        <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+    </form>
     </div>
 <?php
         }
