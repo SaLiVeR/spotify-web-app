@@ -51,19 +51,12 @@ $(document).bind('dragover', function (e) {
     } else {
         dropZone.removeClass('hover');
     }
+    /*
     window.dropZoneTimeout = setTimeout(function () {
         window.dropZoneTimeout = null;
         dropZone.removeClass('in hover');
     }, 100);
-});
-
-$('#fileupload').bind('fileuploadprogress', function (e, data) {
-    // Log the current bitrate for this upload:
-    console.log(data);
-});
-
-$(document).bind('drop dragover', function (e) {
-    e.preventDefault();
+    */
 });
 
 //Controller function managing all movements. The only one that needs to be called
