@@ -32,7 +32,7 @@ $(function () {
 
     // Initialize the jQuery File Upload widget:
     $('body').fileupload({
-        url: 'server/php/',
+        url: 'upload.php',
         dropZone: $('#dropzone')
     });
 
