@@ -17,6 +17,8 @@ showHeader('', array('search'=>true, 'navigation'=>true, 'login'=>false), 'radio
 
 //*********************************************
 ?>
+<script type="text/javascript" src="js/jquery.fileupload-ui.js"></script>
+
 <div id="table-container" class="box">
 <?php
 //Try and load the table. Cos we're nice. Hacky ajax FTW

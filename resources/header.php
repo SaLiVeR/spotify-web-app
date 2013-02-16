@@ -99,13 +99,11 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
     </tr>
 {% } %}
 </script>
-
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/boxshadow-hooks.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload"></script>
     <script type="text/javascript" src="js/jquery.fileupload-fp.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload-jui.js"></script>
-    <script type="text/javascript" src="js/jquery.fileupload-ui.js"></script>
     <script type="text/javascript" src="js/tmpl.min.js"></script>
 <?php
     }
@@ -140,26 +138,6 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
         </div>
         <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
         <div class="row fileupload-buttonbar">
-            <div class="span7">
-                <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
-                    <input type="file" name="files[]" multiple>
-                </span>
-                <button type="submit" class="btn btn-primary start">
-                    <i class="icon-upload icon-white"></i>
-                    <span>Start upload</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel upload</span>
-                </button>
-                <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" class="toggle">
-            </div>
             <div class="span5 fileupload-progress fade">
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                     <div class="bar" style="width:0%;"></div>
