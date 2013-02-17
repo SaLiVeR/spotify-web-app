@@ -131,6 +131,12 @@ body {
     position: absolute;
     z-index: 3;
 }
+#dropcanvas #canvas_close {
+    display: inline block;
+    float: right;
+    width: 40px;
+    height: 40px;
+}
 #dropzone {
     background-image: url('imgs/black90.png');
     padding: 10px;

@@ -51,12 +51,10 @@ $(document).bind('dragover', function (e) {
     } else {
         dropZone.removeClass('hover');
     }
-    /*
     window.dropZoneTimeout = setTimeout(function () {
         window.dropZoneTimeout = null;
         dropZone.removeClass('in hover');
     }, 100);
-    */
 });
 
 //Controller function managing all movements. The only one that needs to be called

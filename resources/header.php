@@ -134,6 +134,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 ?>
     <div id="dropcanvas">
         <div id="dropzone">
+            <a href="#" onclick="$('#dropcanvas').removeClass('in'); return false;" class="canvas_close"></a>
             <h3>Drop Audio File(s) To Upload</h3>
             <h4>Supported formats: MP3, M4A, WAV, FLAC, OGG</h4>
             <p>Once uploaded the file(s) will be checked manually, before being approved to be added to the local library. Upload progress can be monitored in the bottom right corner.<br />
