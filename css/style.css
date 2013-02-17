@@ -131,7 +131,7 @@ body {
     position: absolute;
     z-index: 3;
 }
-#dropcanvas #canvas_close {
+#dropcanvas .canvas_close {
     background-image: url('imgs/close_button.png');
     display: inline block;
     float: right;
