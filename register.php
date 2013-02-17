@@ -49,8 +49,8 @@ if(isset($_POST['register'])) {
     $Secret = $Enc->random_hash();
     $PassHash = crypt($_POST['password'], $Enc->combine_hash($Secret, SITE_SALT));
     
-	$Inserted = $DB->query("INSERT INTO users (Username, PassHash, Secret, Email, Joined) 
-        VALUES ('" . $Username . "', '" . db_string($PassHash) . "', '" . db_string($Secret) . "', '" . $Email . "', '" . sqltime() . "')");
+	$Inserted = $DB->query("INSERT INTO users (Username, PassHash, Secret, Email, Joined, AuthKey) 
+        VALUES ('" . $Username . "', '" . db_string($PassHash) . "', '" . db_string($Secret) . "', '" . $Email . "', '" . sqltime() . "', '" . db_string($Enc->random_hash()) . "')");
 	
     //Create Session
     if($Inserted) {

@@ -38,7 +38,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     if(array_key_exists($RI, $RequiredInfo)) $PassedTests = false;
                     $CurrentInfo[$RI] = '';
                 } else {
-                    $CurrentInfo[$RI] = $TagInfo[$RI];
+                    $CurrentInfo[$RI] = $TagInfo[$RI][0];
                 }
             }
             //Required data exists. Track moves on to admin approval.
