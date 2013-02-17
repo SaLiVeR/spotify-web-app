@@ -24,7 +24,7 @@ class USER {
             $this->SessionID = $CookieInfo[0];
             $this->ID = $CookieInfo[1];
             
-            if(!is_numer($this->ID)) $this->logout();
+            if(!is_number($this->ID)) $this->logout();
             
             if(USE_CACHE) {
                 $Session = $Cache->get('SESSION_' . $this->SessionID);
