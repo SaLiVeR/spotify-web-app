@@ -5,6 +5,8 @@
  * @copyright 2012
  */
 function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>true, 'login'=>false), $JSIncludes=array()) {
+    global $User;
+    
     header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
     header('Pragma: no-cache');
     
