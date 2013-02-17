@@ -260,33 +260,6 @@ function display_array($Array, $Escape = array()) {
     return $Array;
 }
 
-function logout() {
-    setcookie('Session', '', time()-3600, '/', false, true);
-    header('Location: login.php');    
-}
-
-function enforceLogin() {
-    global $DB, $Enc, $Cache;
-    if(isset($_COOKIE['Session'])){
-        $CookieInfo = explode('|<~>|', $Enc->decrypt($_COOKIE['Session']));
-        if(!is_array($CookieInfo) || count($CookieInfo) !== 2) logout();
-        $SessionID = $CookieInfo[0];
-        $UserID = $CookieInfo[1];
-        if(USE_CACHE) {
-            $Session = $Cache->get('SESSION_' . $SessionID);
-        }
-        if(!isset($Session) || $Session === false) {
-            $DB->query("SELECT UserID FROM users_sessions WHERE SessionID = '" . db_string($SessionID) . "'");
-            $Session = $DB->to_array();
-        }
-        if(!$Session || empty($Session) || !array_key_exists('UserID', $Session) || $Session['UserID'] !== $UserID) {
-            logout();
-        }
-    } else {
-        header("Location: login.php");
-    }
-}
-
 function error($E = '', $Ajax = false) {
     die($E);
 }
@@ -328,4 +301,7 @@ if(USE_CACHE) {
 require(RESOURCE_DIR . 'class_mcrypt.php');
 $Enc = new MCRYPT;
 
+//User Object
+require(RESOURCE_DIR . 'class_user.php');
+$User = new USER;
 ?>

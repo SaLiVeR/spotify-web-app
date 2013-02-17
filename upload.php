@@ -3,7 +3,13 @@
 require('config.php');
 
 require(RESOURCE_DIR . 'class_upload.php');
+require(RESOURCE_DIR . 'getid3/getid3.php');
 
+$RequiredInfo = array('title','artist');
+$PotentialInfo = array('year', 'album');
+$PotentialInfo = array_merge($RequiredInfo, $PotentialInfo);
+
+$getID3 = new getID3;
 $Upload = new UPLOAD;
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -18,8 +24,36 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'PUT':
     case 'POST':
         $UploadInfo = $Upload->post(false);
-        
-        print_r($UploadInfo);
+        //Error check here        
+        foreach($UploadInfo['files'] as $File) {
+            $PassedTests = true;
+            $CurrentInfo = array();
+            
+            $FileInfo = $getID3->analyze("uploads/" . $File->name);
+            $TagInfo = $FileInfo['tags']['id3v2'];
+            //Error check here
+            foreach($PotentialInfo as $RI) {
+                if(!array_key_exists($RI, $TagInfo)) {
+                    //If the missing information is "essential"
+                    if(array_key_exists($RI, $RequiredInfo)) $PassedTests = false;
+                    $CurrentInfo[$RI] = '';
+                } else {
+                    $CurrentInfo[$RI] = $TagInfo[$RI];
+                }
+            }
+            //Required data exists. Track moves on to admin approval.
+            $DB->query("INSERT INTO uploaded_songs (UploaderID, Filename, Title, Artist, Album, Year, Duration, Complete) VALUES (
+                '" . $User->ID . "',
+                '" . db_string($File) . "',
+                '" . db_string($CurrentInfo['title']) . "',
+                '" . db_string($CurrentInfo['artist']) . "',
+                '" . db_string($CurrentInfo['album']) . "',
+                '" . db_string($CurrentInfo['year']) . "',
+                '" . db_string(round($FileInfo['playtime_seconds'])) . "',
+                '" . ($PassedTests) ? 1 : 0 . "'
+            )");
+            $UploadInfo->Successful = $PassedTests;
+        }
         
         
         break;

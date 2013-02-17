@@ -12,7 +12,7 @@ require(RESOURCE_DIR . 'header.php');
 //Footer
 require(RESOURCE_DIR . 'footer.php');
 
-enforceLogin();
+$User->enforceLogin();
 showHeader('', array('search'=>true, 'navigation'=>true, 'login'=>false), 'radio.js');
 
 //*********************************************

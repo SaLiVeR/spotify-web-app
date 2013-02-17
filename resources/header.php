@@ -125,6 +125,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
         echo substr($ar[count($ar)-1], 0, -4);
 ?>
     ">
+    <span class="hidden"><?=$User->ID?></span>
 <?php
         //DropZone effects (the body is actually the dropzone, this just comes on top
         if($Options['search']) {
