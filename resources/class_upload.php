@@ -57,7 +57,7 @@ class UPLOAD {
             'accept_file_types' => '/.(mp3|m4a|flac|wav|ogg)$/i',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
-            'max_file_size' => null,
+            'max_file_size' => 10*pow(1024,2),
             'min_file_size' => 1,
             // The maximum number of files for the upload directory:
             'max_number_of_files' => null,
@@ -96,31 +96,6 @@ class UPLOAD {
         );
         if ($options) {
             $this->options = array_merge($this->options, $options);
-        }
-        if ($initialize) {
-            $this->initialize();
-        }
-    }
-
-    protected function initialize() {
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'OPTIONS':
-            case 'HEAD':
-                $this->head();
-                break;
-            case 'GET':
-                $this->get();
-                break;
-            case 'PATCH':
-            case 'PUT':
-            case 'POST':
-                $this->post();
-                break;
-            case 'DELETE':
-                $this->delete();
-                break;
-            default:
-                $this->header('HTTP/1.1 405 Method Not Allowed');
         }
     }
 
@@ -248,75 +223,6 @@ class UPLOAD {
 
     protected function count_file_objects() {
         return count($this->get_file_objects('is_valid_file_object'));
-    }
-
-    protected function create_scaled_image($file_name, $version, $options) {
-        $file_path = $this->get_upload_path($file_name);
-        if (!empty($version)) {
-            $version_dir = $this->get_upload_path(null, $version);
-            if (!is_dir($version_dir)) {
-                mkdir($version_dir, $this->options['mkdir_mode'], true);
-            }
-            $new_file_path = $version_dir.'/'.$file_name;
-        } else {
-            $new_file_path = $file_path;
-        }
-        list($img_width, $img_height) = @getimagesize($file_path);
-        if (!$img_width || !$img_height) {
-            return false;
-        }
-        $scale = min(
-            $options['max_width'] / $img_width,
-            $options['max_height'] / $img_height
-        );
-        if ($scale >= 1) {
-            if ($file_path !== $new_file_path) {
-                return copy($file_path, $new_file_path);
-            }
-            return true;
-        }
-        $new_width = $img_width * $scale;
-        $new_height = $img_height * $scale;
-        $new_img = @imagecreatetruecolor($new_width, $new_height);
-        switch (strtolower(substr(strrchr($file_name, '.'), 1))) {
-            case 'jpg':
-            case 'jpeg':
-                $src_img = @imagecreatefromjpeg($file_path);
-                $write_image = 'imagejpeg';
-                $image_quality = isset($options['jpeg_quality']) ?
-                    $options['jpeg_quality'] : 75;
-                break;
-            case 'gif':
-                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 0, 0, 0));
-                $src_img = @imagecreatefromgif($file_path);
-                $write_image = 'imagegif';
-                $image_quality = null;
-                break;
-            case 'png':
-                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 0, 0, 0));
-                @imagealphablending($new_img, false);
-                @imagesavealpha($new_img, true);
-                $src_img = @imagecreatefrompng($file_path);
-                $write_image = 'imagepng';
-                $image_quality = isset($options['png_quality']) ?
-                    $options['png_quality'] : 9;
-                break;
-            default:
-                $src_img = null;
-        }
-        $success = $src_img && @imagecopyresampled(
-            $new_img,
-            $src_img,
-            0, 0, 0, 0,
-            $new_width,
-            $new_height,
-            $img_width,
-            $img_height
-        ) && $write_image($new_img, $new_file_path, $image_quality);
-        // Free up memory (imagedestroy does not delete files):
-        @imagedestroy($src_img);
-        @imagedestroy($new_img);
-        return $success;
     }
 
     protected function get_error_message($error) {
@@ -527,22 +433,7 @@ class UPLOAD {
             }
             $file_size = $this->get_file_size($file_path, $append_file);
             if ($file_size === $file->size) {
-                if ($this->options['orient_image']) {
-                    $this->orient_image($file_path);
-                }
                 $file->url = $this->get_download_url($file->name);
-                foreach($this->options['image_versions'] as $version => $options) {
-                    if ($this->create_scaled_image($file->name, $version, $options)) {
-                        if (!empty($version)) {
-                            $file->{$version.'_url'} = $this->get_download_url(
-                                $file->name,
-                                $version
-                            );
-                        } else {
-                            $file_size = $this->get_file_size($file_path, true);
-                        }
-                    }
-                }
             } else if (!$content_range && $this->options['discard_aborted_uploads']) {
                 unlink($file_path);
                 $file->error = 'abort';
@@ -561,7 +452,7 @@ class UPLOAD {
         echo $str;
     }
     
-    protected function header($str) {
+    public function header($str) {
         header($str);
     }
 
