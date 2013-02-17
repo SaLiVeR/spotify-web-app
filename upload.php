@@ -44,7 +44,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
             }
             //Required data exists. Track moves on to admin approval.
-            echo "INSERT INTO uploaded_songs (UploaderID, Filename, Title, Artist, Album, Year, Duration, Complete) VALUES (
+            $DB->query("INSERT INTO uploaded_songs (UploaderID, Filename, Title, Artist, Album, Year, Duration, Complete) VALUES (
                 '" . $User->ID . "',
                 '" . db_string($File->name) . "',
                 '" . db_string($CurrentInfo['title']) . "',
@@ -53,7 +53,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 '" . db_string($CurrentInfo['year']) . "',
                 '" . db_string(round($FileInfo['playtime_seconds'])) . "',
                 '" . (($PassedTests) ? 1 : 0) . "'
-            )";
+            )");
             $UploadInfo['files'][$FileKey]->Successful = $PassedTests;
             if(!$PassedTests) {
                 $UploadInfo['files'][$FileKey]->Failed = $FailedTests;
