@@ -24,14 +24,14 @@ class USER {
             $this->SessionID = $CookieInfo[0];
             $this->ID = $CookieInfo[1];
             
-            if(!is_number($this->SessionID) || !is_numer($this->SessionID)) $this->logout();
+            if(!is_numer($this->ID)) $this->logout();
             
             if(USE_CACHE) {
                 $Session = $Cache->get('SESSION_' . $this->SessionID);
             }
             if(!isset($Session) || $Session === false) {
                 $DB->query("SELECT UserID FROM users_sessions WHERE SessionID = '" . db_string($this->SessionID) . "'");
-                $Session = $DB->to_array();
+                $Session = $DB->to_array(false, MYSQLI_ASSOC);
             }
             if($Session && !empty($Session) && array_key_exists('UserID', $Session) && $Session['UserID'] == $this->ID) {
                 $this->Authenticated = true;
