@@ -11,7 +11,7 @@ function updateSearch() {
     });
     
     //var spotifyAPI = "http://ws.spotify.com/search/1/track.json";
-    var API = location.host + "/spotify-web-app/mpd-api.php";
+    var API = "http://" + location.host + "/spotify-web-app/mpd-api.php";
     $.ajax({
         "type": "GET",
         "url": API,

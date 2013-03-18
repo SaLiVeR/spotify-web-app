@@ -20,7 +20,7 @@ class CACHE {
         return $this->obj->addServer($host, $port);
     }
     
-    public function set($Key, $Value, $Expire) {
+    public function set($Key, $Value, $Expire=0) {
         return $this->obj->set($Key, $Value, $Expire);
     }
     
