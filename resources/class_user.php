@@ -57,7 +57,7 @@ class USER {
     }
     
     function enforceLogin() {
-        if(!$this->Authenticated) $this->logout;
+        if(!$this->Authenticated) $this->logout();
     }
     
     function logout() {
