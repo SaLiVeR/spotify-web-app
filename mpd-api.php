@@ -15,9 +15,9 @@ $MPD = new MPD('localhost',6600);
 
 switch($_GET['action']) {
     case 'search':
-        if(!isset($_GET['search'])) invalid();
+        if(!isset($_GET['search']) | empty($_GET['search'])) invalid();
         
-        $Libraries = (isset($_GET['libraries'])) ? $_GET['libraries'] : 'any';
+        $Libraries = (isset($_GET['libraries']) && !empty($_GET['libraries'])) ? $_GET['libraries'] : 'any';
         
         $Results = $MPD->Find($Libraries, $_GET['search']);
         echo json_encode($Results);

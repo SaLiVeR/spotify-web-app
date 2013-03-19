@@ -133,7 +133,7 @@ function filterSongs(data) {
 }
 
 function showTracks(data) {
-    var html = "<table id='search-results-table'><thead><tr><th>Track Name</th><th>Artist</th><th></th><th>Album</th></tr></thead><tbody>";
+    var html = "<table id='search-results-table'><thead><tr><th>Track Name</th><th>Artist/Uploader</th><th></th><th>Album</th></tr></thead><tbody>";
     var limit = (data.length > 20) ? 20 : data.length;
     var row = 'even';
     var current = 0;
