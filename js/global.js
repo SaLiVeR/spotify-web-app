@@ -1,9 +1,9 @@
 //jQuery uses colons for other functions. We need to remove them from our IDs
 function sanitizeID(ID) {
-    return ID.replace('/\:/g','---');
+    return ID.replace('/\:/g','---').replace('/\//g','___').replace('/\./g','£££');
 }
 function unsanitizeID(ID) {
-    return ID.replace(new RegExp('---', 'g'), ':');
+    return ID.replace(new RegExp('---', 'g'), ':').replace(new RegExp('___', 'g'), '/').replace(new RegExp('£££', 'g'), '.');
 }
 
 function formatTime(time) {

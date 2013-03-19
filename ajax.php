@@ -38,13 +38,30 @@ function show_arrow($TrackID, $Direction, $Counter) {
 <?php
 }
 
+function lookupJSON($URL, $Decode=true) {
+    /*$ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $URL);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    */
+    $data = file_get_contents($URL);
+    
+    //Track doesn't exist. C'est IMPOSSIBLÉ!!
+    if(!$data) invalid();
+    
+    if($Decode) $data = json_decode($data);
+    
+    return $data;
+}
+
 
 switch($_GET['action']) {
     case 'add':
         //Check everything is well in Smallville
-        if(!isset($_GET['track']) || !preg_match('/(spotify:(?:track:[a-zA-Z0-9]+)|http:\/\/gdata.youtube.com\/feeds\/api\/videos\/[A-Z0-9]+)/', $_GET['track'])) invalid();
+        if(!isset($_GET['track']) || !validID($_GET['track'])) invalid();
         $TrackID = $_GET['track'];
-        
+
         $DB->query("SELECT * FROM voting_list WHERE trackid = '" . $TrackID . "'");
         if($DB->record_count()) die('exists');
         
@@ -53,35 +70,29 @@ switch($_GET['action']) {
             //Get info on the track and add it to the database
             if(strstr($TrackID,'spotify')) {
                 
-                /*$ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'http://ws.spotify.com/lookup/1/.json?uri=' . $TrackID);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $data = curl_exec($ch);
-                curl_close($ch);
-                */
-                $data = file_get_contents('http://ws.spotify.com/lookup/1/.json?uri=' . $TrackID);
+                $data = lookupJSON('http://ws.spotify.com/lookup/1/.json?uri=' . $TrackID);
                 
-                //Track doesn't exist in Spotify. C'est IMPOSSIBLÉ!!
-                if(!$data) invalid();
-                
-                $data = json_decode($data);
+                $Track = array(
+                    'Title' => $data->track->name,
+                    'Artist' => $data->track->artists[0]->name,
+                    'Album' => $data->track->album->name,
+                    'Time' => $data->track->length
+                );
             } else {
-                /*$ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos?alt=json&q=' . $TrackID);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $data = curl_exec($ch);
-                curl_close($ch);
-                */
-                $data = file_get_contents('http://gdata.youtube.com/feeds/api/videos?alt=json&q=' . $TrackID);
-                die($data);
+                $data = lookupJSON($TrackID . '?alt=json');
+                
+                //Youtube API is annoying
+                $t = '$t';
+                $group = 'media$group';
+                $duration = 'yt$duration';
+                
+                $Track = array(
+                    'Title' => $data->entry->title->$t,
+                    'Artist' => $data->entry->author[0]->name->$t,
+                    'Album' => 'n/a',
+                    'Time' => $data->entry->$group->$duration->seconds
+                );
             }
-            
-            $Track = array(
-                'Title' => $data->track->name,
-                'Artist' => $data->track->artists[0]->name,
-                'Album' => $data->track->album->name,
-                'Time' => $data->track->length
-            );
             
             //Add info to the track catalogue
             $DB->query("INSERT IGNORE INTO track_info (trackid, Title, Artist, Album, Duration) VALUES(
