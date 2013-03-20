@@ -456,11 +456,8 @@ tr.even {
     text-align: center;
 }
 
-#history-container{
-    margin-top: 10px;
-}
-
 #history-container .table-container {
+    margin-top: 10px;
     width: 1200px;
     margin: auto;
 }

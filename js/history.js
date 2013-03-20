@@ -40,7 +40,7 @@ function changeButton(table) {
     $('#button-' + table).addClass('selected');
     var tables = ['recent', 'popular', 'popartist', 'popuser'];
     for(t in tables) {
-        if(tables[t] != table) $('#button-' + table).removeClass('selected');
+        if(tables[t] != table) $('#button-' + tables[t]).removeClass('selected');
     }
 }
 
