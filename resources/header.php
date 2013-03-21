@@ -180,7 +180,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
                         <label for="library-spotify">
                             <img src="img/spotify-icon.png" alt="Spotify Icon" title="Spotify" class="library-icon" />
                         </label>
-                        <input type="checkbox" class="library-button" id="library-spotify" />
+                        <input type="checkbox" class="library-button" id="library-spotify" checked="checked" />
                     </li>
                     <li>
                         <label for="library-youtube">

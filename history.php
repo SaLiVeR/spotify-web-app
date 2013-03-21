@@ -30,7 +30,7 @@ showHeader('Playback History/Stats', array('search'=>false, 'navigation'=>true, 
 </h3>
 </div>
 
-<div class="table-container">
+<div class="table-container" style="margin-top: 15px;">
 <?=$H->createTable('recent')?>
 </div>
 
