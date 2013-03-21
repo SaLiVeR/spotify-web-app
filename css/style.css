@@ -457,7 +457,7 @@ tr.even {
 }
 
 #history-container .table-container {
-    margin-top: 10px;
+    padding-top: 15px;
     width: 1200px;
     margin: auto;
 }
