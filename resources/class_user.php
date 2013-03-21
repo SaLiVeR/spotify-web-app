@@ -9,6 +9,7 @@ class USER {
     public $ID;
     private $SessionID;
     private $Authenticated = false;
+    private $isAdmin = false;
     
     public $Username;
     public $AuthKey;
@@ -49,15 +50,16 @@ class USER {
             $UserInfo = $Cache->get('USER_INFO_' . $this->ID);
         }
         if(!$UserInfo) {
-            $DB->query("SELECT Username, Joined, AuthKey FROM users WHERE ID = " . $this->ID);
+            $DB->query("SELECT Username, Joined, AuthKey, Admin FROM users WHERE ID = " . $this->ID);
              $UserInfo = $DB->next_record(MYSQLI_NUM);
              $Cache->set('USER_INFO_' . $this->ID, $UserInfo);
         }
-        list($this->Username, $this->Joined, $this->AuthKey) = $UserInfo;
+        list($this->Username, $this->Joined, $this->AuthKey, $this->isAdmin) = $UserInfo;
     }
     
-    function enforceLogin() {
+    function enforceLogin($Admin) {
         if(!$this->Authenticated) $this->logout();
+        if(!$this->isAdmin) denied();
     }
     
     function logout() {
