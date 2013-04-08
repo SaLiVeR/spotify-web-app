@@ -19,7 +19,7 @@ class USER {
     function __construct() {
         global $Enc, $DB, $Cache;
         
-        if(isset($_COOKIE['Session'])){
+        if(isset($_COOKIE['Session']) && !empty($_COOKIE['Session'])){
             $CookieInfo = explode('|<~>|', $Enc->decrypt($_COOKIE['Session']));
             if(!is_array($CookieInfo) || count($CookieInfo) !== 2) $this->logout();
             $this->SessionID = $CookieInfo[0];
@@ -57,9 +57,9 @@ class USER {
         list($this->Username, $this->Joined, $this->AuthKey, $this->isAdmin) = $UserInfo;
     }
     
-    function enforceLogin($Admin) {
+    function enforceLogin($Admin=false) {
         if(!$this->Authenticated) $this->logout();
-        if(!$this->isAdmin) denied();
+        if($Admin && !$this->isAdmin) denied();
     }
     
     function logout() {

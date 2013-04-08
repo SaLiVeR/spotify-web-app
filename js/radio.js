@@ -246,7 +246,34 @@ function reloadTable() {
             action: 'table'
         },
         success: function(table) {
-            $('#table-container').html(table);
+            interpretTable(table);
         }
     })
+}
+
+function interpretTable(table) {
+    var newTable = $(table);
+    var oldTable = $($('#table-container').html());
+    var differences = compareTables(newTable, oldTable);
+    
+}
+
+function compareTables(newTable, oldTable) {
+    var newTableRows = newTable.find("tbody").children('tr');
+    var oldTableRows = oldTable.find("tbody").children('tr');
+
+    var differences = [];
+    for(var row in newTableRows) {
+        if(!$.isNumeric(row)) break;
+        var change = row - lookupPosition(oldTableRows, $(newTableRows[row]).attr('id'));
+        differences.push(change);
+    }
+    console.log(differences);
+}
+
+function lookupPosition(tableRows, id) {
+    for(var row in tableRows) {
+        if($(tableRows[row]).attr('id') == id) return row;
+    }
+    return 9001;
 }
