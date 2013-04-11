@@ -27,6 +27,9 @@ $_GET['action'] = 'table';
 include(dirname(__file__) . '/ajax.php');
 ?>
 </div>
+
+<iframe width="" height="" src="player.php">
+</iframe>
 <?php
 //*********************************************
 
