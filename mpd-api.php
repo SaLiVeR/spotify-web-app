@@ -30,6 +30,8 @@ switch($_GET['action']) {
         $Return['track'] = $MPD->current_track_title;
         $Return['artist'] = $MPD->current_track_artist;
         $Return['album'] = $MPD->current_track_album;
+        $Return['year'] = $MPD->current_track_year;
+        $Return['file'] = $MPD->current_track_file;
 
         echo json_encode($Return);
 

@@ -93,6 +93,8 @@ class MPD {
     var $current_track_title;
     var $current_track_artist;
     var $current_track_album;
+    var $current_track_file;
+    var $current_track_year;
     var $volume;
     var $repeat;
     var $random;
@@ -900,8 +902,9 @@ class MPD {
         if(is_null($resp)) return null;
         
         $return = array();
-        $split = explode('\n', $resp);
+        $split = explode("\n", $resp);
         foreach($split as $info) {
+            if(empty($info)) continue;
             $splitInfo = explode(': ', $info);
             $return[strtolower($splitInfo[0])] = $splitInfo[1];
         }
@@ -961,6 +964,8 @@ class MPD {
                 $this->current_track_title = $curInfo['title'];
                 $this->current_track_artist = $curInfo['artist'];
                 $this->current_track_album = $curInfo['album'];
+                $this->current_track_file = $curInfo['file'];
+                $this->current_track_year = $curInfo['date'];
             }
             
         } else {
