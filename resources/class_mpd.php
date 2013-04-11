@@ -53,6 +53,7 @@ define("MPD_CMD_PLSWAPTRACK", "swap");
 define("MPD_CMD_PLMOVETRACK", "move");
 define("MPD_CMD_PASSWORD", "password");
 define("MPD_CMD_TABLE", "list");
+define("MPD_CMD_CURRENTSONG", "currentsong");
 
 // Predefined MPD Response messages
 define("MPD_RESPONSE_ERR", "ACK");
@@ -89,6 +90,9 @@ class MPD {
     var $current_track_position;
     var $current_track_length;
     var $current_track_id;
+    var $current_track_title;
+    var $current_track_artist;
+    var $current_track_album;
     var $volume;
     var $repeat;
     var $random;
@@ -870,27 +874,38 @@ class MPD {
     * NOTE: This function is used internally within the class. It should not be used.
     */
     function _parseFileListResponse($resp) {
-        if(is_null($resp)) {
-            return null;
-        } else {
-            $plistArray = array();
-            $plistLine = strtok($resp, "\n");
-            $plistFile = "";
-            $plCounter = -1;
-            while($plistLine) {
-                list($element, $value) = explode(": ", $plistLine);
-                if($element == "file") {
-                    $plCounter++;
-                    $plistFile = $value;
-                    $plistArray[$plCounter]["file"] = $plistFile;
-                } else {
-                    $plistArray[$plCounter][$element] = $value;
-                }
-
-                $plistLine = strtok("\n");
+        if(is_null($resp)) return null;
+        
+        $plistArray = array();
+        $plistLine = strtok($resp, "\n");
+        $plistFile = "";
+        $plCounter = -1;
+        while($plistLine) {
+            list($element, $value) = explode(": ", $plistLine);
+            if($element == "file") {
+                $plCounter++;
+                $plistFile = $value;
+                $plistArray[$plCounter]["file"] = $plistFile;
+            } else {
+                $plistArray[$plCounter][$element] = $value;
             }
+
+            $plistLine = strtok("\n");
         }
+        
         return $plistArray;
+    }
+    
+    function _parseInfoResponse($resp) {
+        if(is_null($resp)) return null;
+        
+        $return = array();
+        $split = explode('\n', $resp);
+        foreach($split as $info) {
+            $splitInfo = explode(': ', $info);
+            $return[strtolower($splitInfo[0])] = $splitInfo[1];
+        }
+        return $return;
     }
 
     /* RefreshInfo()
@@ -938,6 +953,16 @@ class MPD {
         if(($this->state == MPD_STATE_PLAYING) || ($this->state == MPD_STATE_PAUSED)) {
             $this->current_track_id = $status['song'];
             list($this->current_track_position, $this->current_track_length) = explode(":", $status['time']);
+            
+            //Get info about the current song playing
+            $curStr = $this->SendCommand(MPD_CMD_CURRENTSONG);
+            if($curStr) {
+                $curInfo = $this->_parseInfoResponse($curStr);
+                $this->current_track_title = $curInfo['title'];
+                $this->current_track_artist = $curInfo['artist'];
+                $this->current_track_album = $curInfo['album'];
+            }
+            
         } else {
             $this->current_track_id = -1;
             $this->current_track_position = -1;
@@ -956,6 +981,7 @@ class MPD {
         $this->num_artists = (isset($stats['num_artists'])) ? $stats['num_artists'] : 0;
         $this->num_songs = (isset($stats['num_songs'])) ? $stats['num_songs']: 0;
         $this->num_albums = (isset($stats['num_albums'])) ? $stats['num_albums'] : 0;
+        
         return true;
     }
 

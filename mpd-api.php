@@ -26,12 +26,10 @@ switch($_GET['action']) {
     case 'playerinfo':
         $Return = array();
         $Return['position'] = $MPD->current_track_position;
-        $Return['track'] = $MPD->current_track_id;
-        
-        $NowPlaying = $Cache->get('nowplaying');
-        if(!$NowPlaying) {
-            $DB->query("SELECT Title, Artist, Album FROM track_info WHERE trackid = " . db_string($MPD->current_track_id));
-        }
+        $Return['length'] = $MPD->current_track_length;
+        $Return['track'] = $MPD->current_track_title;
+        $Return['artist'] = $MPD->current_track_artist;
+        $Return['album'] = $MPD->current_track_album;
 
         echo json_encode($Return);
 
