@@ -28,7 +28,7 @@ include(dirname(__file__) . '/ajax.php');
 ?>
 </div>
 
-<iframe width="" height="" src="player.php">
+<iframe width="700px" height="110px" src="player.php" style="margin: auto; overflow: hidden;">
 </iframe>
 <?php
 //*********************************************

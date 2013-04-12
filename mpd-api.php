@@ -13,6 +13,10 @@ if(!isset($_GET['action'])) invalid();
 include(RESOURCE_DIR . 'class_mpd.php');
 $MPD = new MPD('localhost',6600);
 
+if(!is_null($MPD->errStr)) {
+    error($MPD->errStr, true);
+}
+
 switch($_GET['action']) {
     case 'search':
         if(!isset($_GET['search']) | empty($_GET['search'])) invalid();
@@ -42,7 +46,7 @@ switch($_GET['action']) {
                             vl.addedBy AS UserID,
                             u.Username,
                             u.Avatar,
-                            SUM(IF(v.updown = 1), 1, -1) AS Votes 
+                            SUM(IF(v.updown, 1, -1)) AS Votes 
                         FROM voting_list AS vl
                         LEFT JOIN votes AS vl 
                             ON vl.trackid = v.trackid
