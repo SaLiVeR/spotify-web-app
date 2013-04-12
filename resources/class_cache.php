@@ -8,6 +8,10 @@ class CACHE {
         $this->id = $id;
         $this->obj = new Memcached($id);
         $this->connect(MEMCACHED_HOST, MEMCACHED_PORT);
+        
+        if(isset($_GET['flushcache'])) {
+            $this->obj->flush();
+        }
     }
 
     public function connect($host, $port) {
