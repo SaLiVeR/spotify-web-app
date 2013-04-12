@@ -13,7 +13,7 @@ if(!isset($_GET['action'])) invalid();
 include(RESOURCE_DIR . 'class_mpd.php');
 $MPD = new MPD('localhost',6600);
 
-if(!is_null($MPD->errStr)) {
+if(!empty($MPD->errStr)) {
     error($MPD->errStr, true);
 }
 
@@ -28,6 +28,7 @@ switch($_GET['action']) {
         
         break;
     case 'playerinfo':
+        echo "test";
         if(!$Return = $Cache->get('current_song_info')) {
     
             $Return = array();
@@ -48,7 +49,7 @@ switch($_GET['action']) {
                             u.Avatar,
                             SUM(IF(v.updown, 1, -1)) AS Votes 
                         FROM voting_list AS vl
-                        LEFT JOIN votes AS vl 
+                        LEFT JOIN votes AS v
                             ON vl.trackid = v.trackid
                         JOIN users AS u
                             ON u.ID = vl.addedBy 
