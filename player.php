@@ -18,7 +18,7 @@ require('config.php');
 	<meta http-equiv="content-type" content="text/html" />
 	<meta name="author" content="MetalMichael" />
 
-    <link rel="stylesheet" href="styles/player.css" />
+    <link rel="stylesheet" href="css/player.css" />
     <script type="text/javascript" src="js/player.js"></script>
 </head>
 <body>
@@ -27,7 +27,7 @@ require('config.php');
     <div id="player-top">
         <div id="pause"><a href="#" id="pause-button"></a></div>
         <div id="info-left">
-            <div id="artist"></div>
+            <div id="artist">No Track Loaded</div>
             <div id="song"></div>
         </div>
         <div id="info-right">
@@ -37,10 +37,10 @@ require('config.php');
     </div>
     <div id="player-bottom">
         <div id="bar-container">
+            <div id="current-position"></div>
             <div id="current-time">0:00</div>
             <div id="bar"></div>
-            <div id="current-position"></div>
-            <div id="end-time">6:34</div>
+            <div id="end-time">0:00</div>
         </div>
         <div id="logo"><img /></div>
     </div>

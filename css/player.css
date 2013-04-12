@@ -1,0 +1,85 @@
+body {
+    color: white;
+    font-size: 18px;
+}
+
+#player-container {
+    background-color: #656565;
+    
+    width: 700px;
+    height: 110px;
+}
+
+#pause {
+    display: inline-block;
+    background-image: url("imgs/player/pause.png");
+    
+    margin: 8px 0 0 30px;
+    
+    width: 65px;
+    height: 65px;
+}
+
+#info-left {
+    display: inline-block;
+    position: relative;
+    top: -15px;
+    left: 10px;
+}
+
+#info-right {
+    display: inline-block;
+    float: right;
+}
+
+#artist {
+    font-size: 26px;
+}
+
+#song {
+    font-size: 20px;
+}
+
+#player-bottom {
+    border-top: 1px solid black;
+}
+
+#bar-container {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 2px;
+}
+
+#bar {
+    display: inline-block;
+    width: 350px;
+    height: 2px;
+    background-color: white;
+    margin: 5px;
+}
+
+#current-position {
+    background-image: url("imgs/player/pointer.png");
+    
+    width: 11px;
+    height: 12px;
+    
+    display: inline-block;
+    position: relative;
+    left: 62px;
+}
+
+#current-time, #end-time {
+    display: inline-block;
+    padding: 5px;
+}
+
+#avatar {
+    width: 100px;
+    height: 80px;
+}
+
+#logo {
+    
+    float: right;
+}
