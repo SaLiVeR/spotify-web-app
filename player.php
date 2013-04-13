@@ -19,6 +19,7 @@ require('config.php');
 	<meta name="author" content="MetalMichael" />
 
     <link rel="stylesheet" href="css/player.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
 </head>
 <body>
