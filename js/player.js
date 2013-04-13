@@ -42,6 +42,10 @@ function second() {
     
     $('#current-time').html(timestamp(time));
     $('#current-time-seconds').html(time);
+    
+    var newLeft = parseInt($('#current-position').css('left')) + 350/$('#end-time-seconds').html();
+    $('#current-position').css('left', newLeft + 'px');
+    
     if(time !== parseInt($('#end-time-seconds').html())) {
         secondTimer = window.setTimeout("second();", 1000);
     }
