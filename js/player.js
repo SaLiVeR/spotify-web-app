@@ -1,6 +1,6 @@
-$.function() {
+$(function() {
     reload();
-}
+});
 
 function reload() {
     var apiURL = "mdp-api.php";
