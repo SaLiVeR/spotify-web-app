@@ -3,12 +3,12 @@ $(function() {
 });
 
 function reload() {
-    var apiURL = "mdp-api.php";
+    var apiURL = "mpd-api.php";
     
     $.ajax({
         "type": "GET",
         "url": apiURL,
-        "data": {'action': 'radioinfo'},
+        "data": {'action': 'playerinfo'},
         "dataType": "json",
         "success": function(data) {
             if(typeof data === 'object') {
@@ -19,28 +19,31 @@ function reload() {
     });
 }
 
+var secondTimer;
 function addInfo(info) {
     
     $('#artist').html(info.artist);
-    $('#song').html(info.title);
-    $('#current-time').html(info.position);
-    $('#current-time-seconds').html(timestamp(info.position));
-    $('#end-time').html(info.length);
+    $('#song').html(info.track);
+    $('#current-time').html(timestamp(info.position));
+    $('#current-time-seconds').html(info.position);
+    $('#end-time').html(timestamp(info.length));
+    $('#end-time-seconds').html(info.length);
     $('#votes').html(info.votes);
     
     
-    window.setTimeout("reload();", 1000*10);
-    window.setTimeout("second();", 1000);
+    reloadTimer = window.setTimeout("reload();", 1000*10);
+    window.clearTimeout(secondTimer);
+    secondTimer = window.setTimeout("second();", 1000);
 }
 
 function second() {
-    var time = parseInt($('#current-time').html());
+    var time = parseInt($('#current-time-seconds').html());
     time += 1;
     
-    $('#current-time').html(time);
-    $('#current-time-seconds').html(timestamp(time));
+    $('#current-time').html(timestamp(time));
+    $('#current-time-seconds').html(time);
     if(time !== parseInt($('#end-time-seconds').html())) {
-        window.setTimeout("second();", 1000);
+        secondTimer = window.setTimeout("second();", 1000);
     }
 }
 
@@ -59,11 +62,20 @@ function timestamp(time) {
     var ret = '';
     
     if(hours > 0) {
-        ret = hours + ':'
+        ret = hours + ':' + showTimeNumber(minutes);
+    } else {
+        ret = minutes;
     }
-    ret += howTimeNumber(minutes) + ':' + howTimeNumber(time);
+    ret += ':' + showTimeNumber(time);
+    return ret;
 }
 
 function showTimeNumber(digit) {
+    if(typeof digit == 'undefined' || digit == '' || !isInt(digit)) return '00';
     if(digit < 10) return '0' + digit;
+    return digit;
+}
+
+function isInt(n) {
+    return n % 1 === 0;
 }
