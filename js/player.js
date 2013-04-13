@@ -20,6 +20,7 @@ function reload() {
 }
 
 var secondTimer;
+var barWidth = 350;
 function addInfo(info) {
     
     $('#artist').html(info.artist);
@@ -30,6 +31,7 @@ function addInfo(info) {
     $('#end-time-seconds').html(info.length);
     $('#votes').html(info.votes);
     
+    movePointer(info.position);   
     
     reloadTimer = window.setTimeout("reload();", 1000*10);
     window.clearTimeout(secondTimer);
@@ -43,12 +45,16 @@ function second() {
     $('#current-time').html(timestamp(time));
     $('#current-time-seconds').html(time);
     
-    var newLeft = parseInt($('#current-position').css('left')) + 350/$('#end-time-seconds').html();
-    $('#current-position').css('left', newLeft + 'px');
+    movePointer(1);
     
     if(time !== parseInt($('#end-time-seconds').html())) {
         secondTimer = window.setTimeout("second();", 1000);
     }
+}
+
+function movePointer(seconds) {
+    var newLeft = parseInt($('#current-position').css('left')) + barWidth/$('#end-time-seconds').html() * seconds;
+    $('#current-position').css('left', newLeft + 'px');
 }
 
 function timestamp(time) {
