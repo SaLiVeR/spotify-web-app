@@ -1,8 +1,8 @@
 $(function() {
-    reload();
+    reload(true);
 });
 
-function reload() {
+function reload(initial) {
     var apiURL = "mpd-api.php";
     
     $.ajax({
@@ -13,7 +13,7 @@ function reload() {
         "success": function(data) {
             if(typeof data === 'object') {
                 console.log(data);
-                addInfo(data);
+                addInfo(data, initial);
             }
        } 
     });
@@ -21,7 +21,14 @@ function reload() {
 
 var secondTimer;
 var barWidth = 350;
-function addInfo(info) {
+function addInfo(info, initial) {
+    
+    if(info.position > info.length) {
+        info.position = info.length;
+    } else {
+        window.clearTimeout(secondTimer);
+        secondTimer = window.setTimeout("second();", 1000);
+    }
     
     $('#artist').html(info.artist);
     $('#song').html(info.track);
@@ -31,11 +38,12 @@ function addInfo(info) {
     $('#end-time-seconds').html(info.length);
     $('#votes').html(info.votes);
     
-    movePointer(info.position);   
+    if(initial) {
+        movePointer(info.position);
+    }   
     
     reloadTimer = window.setTimeout("reload();", 1000*10);
-    window.clearTimeout(secondTimer);
-    secondTimer = window.setTimeout("second();", 1000);
+    
 }
 
 function second() {
