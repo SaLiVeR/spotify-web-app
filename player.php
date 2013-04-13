@@ -39,8 +39,10 @@ require('config.php');
         <div id="bar-container">
             <div id="current-position"></div>
             <div id="current-time">0:00</div>
+            <div id="current-time-seconds"></div>
             <div id="bar"></div>
             <div id="end-time">0:00</div>
+            <div id="end-time-seconds"></div>
         </div>
         <div id="logo"><img /></div>
     </div>
