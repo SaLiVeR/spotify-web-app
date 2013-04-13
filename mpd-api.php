@@ -28,7 +28,6 @@ switch($_GET['action']) {
         
         break;
     case 'playerinfo':
-        echo "test";
         if(!$Return = $Cache->get('current_song_info')) {
     
             $Return = array();
