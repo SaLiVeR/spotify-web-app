@@ -161,7 +161,7 @@ function showHeader($PageTitle='', $Options=array('search'=>true, 'navigation'=>
 <?php
     if($Options['navigation']) {
 ?>       
-        <h2><a href="index.php" onclick="changeNav('index.php')">Title</a></h2>
+        <h2><a href="index.php" onclick="changeNav('index.php')">Michael's Awesome (Badly Coded) Music Player</a></h2>
         <div id="navigation">
             <ul>
                 <a href="index.php" onclick="changeNav('index.php')" id="nav-index"><li class="button indexBtn">Voting</li></a>

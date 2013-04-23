@@ -1,3 +1,19 @@
+/*
+
+So basically, I have no idea how to do OOP in javascript. And I googled it and it seems really unusual.
+SO, new plan. Use globals all the time. I'm sorry anyone reading over this, or future me, but it works...
+
+*/
+
+//The jQuery object of the row being moved
+var movingRow;
+//The starting position of this row (supplied by JS HTML)
+var movingPosition;
+//The new position of this row, from ajax call
+var movingNewPosition;
+//The difference between these two positions
+var movingBy;
+
 function updateSearch() {
     var search = $('#searchinput').val();
     if(typeof search == 'undefined' || search.length === 0) {
@@ -54,30 +70,29 @@ $(document).bind('dragover', function (e) {
 });
 
 //Controller function managing all movements. The only one that needs to be called
-function moveRow(id, distance) {
-    var o = $('#row-' + id);
-    o.css('z-index', 1);
-    lift(o, distance);
+function moveRow() {
+    movingRow.css('z-index', 1);
+    lift();
 }
-function lift(o, distance) {
-    o.animate({
+function lift() {
+    movingRow.animate({
         top: '-2px',
         left: '2px'
     }, {
         duration: 200,
         queue: false,
         complete: function() {
-            moveUp(o, distance);
-            moveRows(o, distance);
+            moveUp();
+            moveRows();
         }
     });
 }
-function moveRows(o, total) {
-    if(total < 0) {
-        var rows = o.nextAll().splice(0,-total)
+function moveRows() {
+    if(movingBy < 0) {
+        var rows = movingRow.nextAll().splice(0,-movingBy)
         var direction = -1;
     } else {
-        var rows = o.prevAll().splice(0,total);
+        var rows = movingRow.prevAll().splice(0,movingBy);
         var direction = 1;
     }
     $(rows).each(function(e) {
@@ -90,27 +105,27 @@ function moveRows(o, total) {
     });
 }
 
-function moveUp(o, distance) {
-    o.animate({
-        top: -25*distance-2
+function moveUp() {
+    movingRow.animate({
+        top: -25 * movingBy - 2
     }, {
         duration: 800,
         queue: false,
         complete: function() {
-            drop(o);
+            drop();
         }
     });
 }
 
-function drop(o) {
-    o.animate({
-        top: (parseInt(o.css('top')) + 2) + 'px',
-        left: (parseInt(o.css('left')) - 2) + 'px'
+function drop() {
+    movingRow.animate({
+        top: (parseInt(movingRow.css('top')) + 2) + 'px',
+        left: (parseInt(movingRow.css('left')) - 2) + 'px'
     }, {
         duration: 200,
         queue: false,
         complete: function() {
-            o.css('z-index', 0);
+            movingRow.css('z-index', 0);
             reloadTable();
         }
     });
@@ -204,6 +219,7 @@ function addSong(songid) {
 
 // 1 = up, 0 = down
 function vote(direction, id, currentpos) {
+    movingPosition = currentpos;
     if(direction == 1) {
         $('#button-up-' + id).removeClass('voteup');
         $('#button-up-' + id).removeClass('voteup-red');
@@ -232,8 +248,13 @@ function vote(direction, id, currentpos) {
         },
         success: function(votedata) {
             votedata = votedata.split('!!');
+            movingNewPosition = votedata[1];
             $('#score-' + id).html(votedata[0]);
-            if(currentpos - votedata[1] !== 0) moveRow(id, currentpos - votedata[1]);
+            if(movingPosition - movingNewPosition !== 0) {
+                movingRow = $('#row-' + id);
+                movingBy = movingPosition - movingNewPosition;
+                moveRow();
+            }
         }
     })
 }
@@ -253,9 +274,31 @@ function reloadTable() {
 
 function interpretTable(table) {
     var newTable = $(table);
-    var oldTable = $($('#table-container').html());
-    var differences = compareTables(newTable, oldTable);
+    var oldTable = changeHTMLtoLive($($('#table-container').html()));
     
+    //var differences = compareTables(newTable, oldTable);
+    //console.log(differences);
+}
+
+/*
+    Because we animate the position of the table row after voting, the position within the HTML isn't accurate to its real position
+    In this function we insert the row into its real position. This isn't added to the page, just looked at, before changes are made
+    and the whole thing is refreshed...
+*/
+function changeHTMLtoLive(table) {
+    var tableRows = table.find("tbody").children('tr');
+    var newRows = $('<tbody>');
+    for(var row in tableRows) {
+        if(!$.isNumeric(row)) break;
+        if(row == movingNewPosition) {
+            newRows.append(movingRow.clone());
+            newRows.append($(tableRows[row]).clone());
+        } else if(row !== movingPosition) {
+            newRows.append($(tableRows[row]).clone());
+        }
+    }
+    table = table.find("tbody").replaceWith(newRows);
+    return table;
 }
 
 function compareTables(newTable, oldTable) {
@@ -268,11 +311,11 @@ function compareTables(newTable, oldTable) {
         var change = row - lookupPosition(oldTableRows, $(newTableRows[row]).attr('id'));
         differences.push(change);
     }
-    console.log(differences);
 }
 
 function lookupPosition(tableRows, id) {
     for(var row in tableRows) {
+        if(!$.isNumeric(row)) break;
         if($(tableRows[row]).attr('id') == id) return row;
     }
     return 9001;
